@@ -8,11 +8,11 @@
     <section class="content container-fluid">
     <a class="btn btn-secondary btn-lg" href="{{ url('carts/') }}"><i class="fas fa-chevron-circle-left"></i></a>
     <div class="container">
-<form action="{{ url('/cart/'.$cart->id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ url('/carts/') }}" method="post" enctype="multipart/form-data">
 @csrf
 {{ method_field('PATCH') }}
     
-<h1 class="text-break">{{ $cart->name }}</h1>
+<h1 class="text-break">Mi Carrito</h1>
 
 @if(count($errors)>0)
 
@@ -28,13 +28,13 @@
     
 <div class="row">
     <div class="col-sm-4">
-        @if(isset($cart->image))
+        @if(isset($cart->product->image))
             <img class="rounded" src="../storage/app/public/uploads/{{$cart->image}}" width="350" alt="{{$cart->image}}">
         @endif
     </div>
     <div class="col">
             <div class="form-floating">
-            <p class="text-break">{{ $cart->description}}</p>
+            <p class="text-break">{{ $cart->product->name}}</p>
             </div>
             <br>
 
