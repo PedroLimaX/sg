@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('product/index');
 });
 
-Auth::routes();
+Auth::routes(['reset'=>false]);
 
 Route::resource('products', App\Http\Controllers\ProductController::class);
 Route::resource('providers', App\Http\Controllers\ProviderController::class);
@@ -29,5 +29,5 @@ Route::resource('carts', App\Http\Controllers\CartController::class);
 Route::resource('orders', App\Http\Controllers\OrderController::class);
 Route::resource('rols', App\Http\Controllers\RolController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
 Route::get('/', [ProductController::class, 'index'])->name('home');

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 /**
  * Class ProductController
  * @package App\Http\Controllers
@@ -20,11 +21,25 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate();
+        $filter=$request->get('search');
+        $category=$request->get('category');
+        if($filter){
+            $products = Product::where('name','like',"%$filter%")
+            ->orWhere('name','like',"%$filter%")
+            ->orWhere('description','like',"%$filter%")
+            ->orWhere('specs','like',"%$filter%")
+            ->orWhere('maker','like',"%$filter%")->paginate();
+        }
+        else if($category){
+            $products = Product::where('category_id','like',"$category")->paginate();
+        }
+        else{
+            $products = Product::paginate();
+        }
 
-        return view('product.index', compact('products'))
+        return view('product.index', compact('products','category'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
 

@@ -23,10 +23,8 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
     
-    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
-
-
 </head>
 <body>
     <div id="app">
@@ -44,77 +42,63 @@
                     <!-- Left Side Of Navbar -->
                     
                     <form class="d-flex col-sm-5">
-                        <input class="form-control me-4 search-color" type="search" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                        <input class="form-control me-4 search-color" name="search" value="" type="search" placeholder="Buscar" aria-label="search">
+                        &nbsp<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                     </form>
                     <!-- Right Side Of Navbar -->
                     
                     <ul class="navbar-nav ml-auto">
-                    @if(isset(Auth::user()->id))
-                    <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle rounded link-color" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @if((Auth::user()->rol_id)==1)
-                                <i class="fas fa-user-shield"></i> Administrador
-                                @elseif ((Auth::user()->rol_id)==2)
-                                <i class="fas fa-user-cog"></i> Proveedor
-                                    @elseif ((Auth::user()->rol_id)==3)
-                                    <i class="fas fa-user"></i> Cliente
-                                @endif
-                            </a>
-
-                            @if(Auth::user()->rol_id==1)
-                            <div class="dropdown-menu dropdown-menu-right dropdown-color" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
-                            </div>
-                            @endif
-                            @if(Auth::user()->rol_id==2)
-                            
-                            <div class="dropdown-menu dropdown-menu-right dropdown-color" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
-                            </div>
-                            @endif
-                            @if(Auth::user()->rol_id==3)
-                            
-                            <div class="dropdown-menu dropdown-menu-right dropdown-color" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('carts.index') }}">{{ __('Mi Carrito') }}</a>
-                                <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
-                            </div>
-                            @endif
-                        </li>
-                        @endif
-                        
-                        <!-- Authentication Links -->
-                                                
+                        <!-- Authentication Links -->                  
                         @guest
+                        @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link link-color rounded" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                                </li>
+                            @endif
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link link-color rounded" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                                 </li>
                             @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link link-color rounded" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                                </li>
-                            @endif
+                            
                         @else
                         <img src="{{URL::asset('../storage/app/public/uploads/'.Auth::user()->image)}}" alt=""  width="30">
                             <li class="nav-item dropdown">
-                                
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle rounded link-color" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right dropdown-color" aria-labelledby="navbarDropdown">
+                                    
+                                    
+                                    <a class="dropdown-item" href="{{ url('users/'.Auth::user()->id) }}">
+                                       Ver perfil
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('users/'.Auth::user()->id) }}">
-                                       Ver perfil
-                                    </a>
 
+                                    <div class="dropdown-divider"></div>
+                                    
+                                    <a class="dropdown-item" href="#">
+                                    @if((Auth::user()->rol_id)==1)
+                                        <i class="fas fa-user-shield"></i>
+                                    @elseif ((Auth::user()->rol_id)==2)
+                                        <i class="fas fa-user-cog"></i>
+                                    @else
+                                        <i class="fas fa-user"></i>
+                                    @endif
+                                    {{Auth::user()->rol->name}}</a>
+
+                                    @if(Auth::user()->rol_id==1)
+                                        <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
+                                    @elseif(Auth::user()->rol_id==2)
+                                        <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
+                                    @else
+                                    <a class="dropdown-item" href="{{ route('carts.index') }}">{{ __('Mi Carrito') }}</a>
+                                    <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
+                                    @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -136,36 +120,84 @@
             </div>
         </nav>
 
-        <div class="row g-0">
-        <div class="col-sm-3 col-md-2">
-            <nav id="navbar-example3" class="navbar  flex-column align-items-stretch p-3 shadow navbar-color">
-                <label class="navbar-brand " href="#">Accesos</label>
-                <nav class="nav nav-pills flex-column">
-                    <a class="nav-link link-color" href="{{ route('products.index') }}"><i class="fas fa-lightbulb"></i> {{ __('Productos') }}</a>
-                    <nav class="nav nav-pills flex-column">
-                        <ul>
-                            <a class="nav-link ms-3 my-1 link-color" href="{{ route('products.index') }}"><i class="fas fa-bolt"></i></i> {{ __('Iluminacion Exterior') }}</a>
-                            <a class="nav-link ms-3 my-1 link-color" href="{{ route('products.index') }}"><i class="fas fa-home"></i> {{ __('Iluminacion Interior') }}</a>
-                            <a class="nav-link ms-3 my-1 link-color" href="{{ route('products.index') }}"><i class="fas fa-car"></i> {{ __('Iluminacion Automotriz') }}</a>
-                            <a class="nav-link ms-3 my-1 link-color" href="{{ route('products.index') }}"><i class="fas fa-industry"></i> {{ __('Iluminacion Industrial') }}</a>
-                            <a class="nav-link ms-3 my-1 link-color" href="{{ route('products.index') }}"><i class="fas fa-cogs"></i> {{ __('Repuestos y accesorios') }}</a>
+
+<div class="container-fluid">
+    <div class="row align-items-start">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 navbar flex-column align-items p-2 shadow navbar-color">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100">
+                <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto  text-decoration-none">
+                 <label class="fs-5 d-none d-sm-inline">Menu</label>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start" id="menu">
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-box"></i><span class="ms-1 d-none d-sm-inline"> {{ __('Productos') }}</span></a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="{{ route('products.index') }}" class="nav-link px-2 align-middle link-color">
+                                <i class="fas fa-th-large"></i></i> <span class="ms-1 d-none d-sm-inline">{{ __('Todos') }}</span></a>
+                            </li>
+                            <li class="w-100">
+                                <form action="{{ route('products.index') }}" class="d-grid gap-2">
+                                    <input name="category" value="1" type="hidden" placeholder="" aria-label="search">
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-home"></i> <span class="d-none d-sm-inline"> {{ __('Iluminación Interior') }}</span></button>
+                                </form>
+                            </li>
+                            <li class="w-100">
+                                <form action="{{ route('products.index') }}" class="d-grid gap-2">
+                                    <input name="category" value="2" type="hidden" placeholder="" aria-label="search">
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-bolt"></i> <span class="d-none d-sm-inline"> {{ __('Iluminación Exterior') }}</span></button>
+                                </form>
+                            </li>
+                            <li class="w-100">
+                                <form action="{{ route('products.index') }}" class="d-grid gap-2">
+                                    <input name="category" value="3" type="hidden" placeholder="" aria-label="search">
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-car"></i> <span class="d-none d-sm-inline"> {{ __('Iluminación Automotriz') }}</span></button>
+                                </form>
+                            </li>
+                            <li class="w-100">
+                                <form action="{{ route('products.index') }}" class="d-grid gap-2">
+                                    <input name="category" value="4" type="hidden" placeholder="" aria-label="search">
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-industry"></i> <span class="d-none d-sm-inline"> {{ __('Iluminación Industrial') }}</span></button>
+                                </form>
+                            </li>
+                            <li class="w-100">
+                                <form class="d-grid gap-2">
+                                    <input name="category" value="5" type="hidden" placeholder="" aria-label="search">
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-cogs"></i> <span class="d-none d-sm-inline"> {{ __('Repuestos y accesorios') }}</span></button>
+                                </form>
+                            </li>
+                            
                         </ul>
-                    </nav>
-                    <a class="nav-link link-color" href="#"><i class="fas fa-dollar-sign"></i> Promociones</a>
-                    <a class="nav-link link-color" href="{{ route('providers.index') }}"><i class="fas fa-shipping-fast"></i> {{ __('Proveedores') }}</a>
-                    @if (isset(Auth::user()->id))
-                    <a class="nav-link link-color" href="{{ route('orders.index') }}" ><i class="fas fa-boxes"></i> Mis pedidos</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-dollar-sign"></i></i> <span class="ms-1 d-none d-sm-inline">Promociones</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ route('providers.index') }}" class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-shipping-fast"></i></i> <span class="ms-1 d-none d-sm-inline">Proveedores</span></a>
+                    </li>
+                    @if (Auth::check())
+                    <li>
+                        <a href="{{ route('orders.index') }}" class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-boxes"></i></i> <span class="ms-1 d-none d-sm-inline">Mis Pedidos</span></a>
+                    </li>
                     @endif
-                    <a class="nav-link link-color" href="#"><i class="fas fa-hand-holding-usd"></i> Cotizaciones</a>
-                </nav>
-            </nav>
+                    <li>
+                        <a href="http://wa.me/+522462380354" target="_blank"class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-hand-holding-usd"></i></i> <span class="ms-1 d-none d-sm-inline">Cotizaciones</span></a>
+                    </li>
+                    
+                </ul>
+            </div>
         </div>
-        <div class="col-sm-3 col-md-10">
+        <div class="col py-3">
             <main class="py-4">
                 @yield('content')
             </main>
         </div>
-</div>
+    </div>
 </div>
 
 <script>
@@ -200,6 +232,7 @@
     <!-- Section: Social media -->
   </div>
   <!-- Grid container -->
+  <span>SG Iluminacion Slogan | Novaware</span>
   <!-- Copyright -->
   <div class="text-center p-3 footer-copyright">
     © 2021 |

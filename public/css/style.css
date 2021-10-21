@@ -4,9 +4,9 @@
   --light2-color: #EEEEEE;
   --light3-color: #FFFFFF;
   --primary-color: #971914;
-  --primary-transparent-color: rgba(151,25,20,1);
+  --primary-transparent-color: rgba(151,25,20,0.5);
   --secondary-color: #000000;
-  --secondary-transparent-color:rgba(0,0,0,0.075);
+  --secondary-transparent-color:rgba(0,0,0,0.15);
   --tertiary-color: #7B7B7B;
   --fourty-color: #DDDDDD;
   --text-color: #252A34;
@@ -18,10 +18,10 @@
     --light-color: #252A34;
     --light2-color: #222831;
     --light3-color: #1B202A;
-    --primary-color: #C70039;
-    --primary-transparent-color: rgba(199, 0, 57,1);
+    --primary-color: #00adb5;
+    --primary-transparent-color: rgba(0, 173, 181,0.5);
     --secondary-color: #EEEEEE;
-    --secondary-transparent-color:rgba(0,0,0,0.075);
+    --secondary-transparent-color:rgba(0,0,0,0.15);
     --tertiary-color: #7B7B7B;
     --fourty-color: #DDDDDD;
     --text-color: #E0E0E0;
@@ -61,16 +61,18 @@ label{
     background-color: var(--light2-color);
     color:var(--text2-color);
 }
+.navbar-toggler{
+    border-color: var(--tertiary-color);
+}
 
 .nav-link:hover{
-    color: var(--light2-color);
-    background-color: var(--primary-color);
+    color: var(--primary-color);
 }
 .link-color, .dropdown-item{
     color: var(--tertiary-color);
 }
 .link-color:hover, .dropdown-item:hover{
-    color: var(--fourty-color);
+    color: var(--primary-color);
 }
 .card-color{
     background-color: var(--light2-color);
@@ -142,12 +144,13 @@ table tr td{
 .card{
     background-color: var(--light2-color);
     border: 1px solid var(--thead-color);
-
+    -webkit-box-shadow: 0 0  2px 0px var(--secondary-transparent-color);
+    box-shadow: 0px 5px 12px 0px var(--secondary-transparent-color);
 }
 .card:hover{
     background-color: var(--light3-color);
     border: var(--primary-transparent-color);
-    -webkit-box-shadow:i 0 0  2px 0px var(--primary-transparent-color);
+    -webkit-box-shadow: 0 0  2px 0px var(--primary-transparent-color);
     box-shadow: 0 0  2px 0px var(--primary-transparent-color);
 }
 
@@ -174,17 +177,20 @@ table tr td{
     border: 1px solid var(--tertiary-color);
 }
 .dropdown-item:hover{
-    background-color: var(--primary-transparent-color);
-    color: var(--fourty-color);
+    color: var(--primary-color);
+    background-color: var(--light3-color);
 }
 .search-color{
-    background-color: var(--light2-color);
+    background-color: var(--light-color);
+    border-color:var(--secondary-transparent-color);
 }
 .search-color:focus{
     background-color: var(--light-color);
+    -webkit-box-shadow: 0 0 4px 2px var(--primary-transparent-color);
+    box-shadow: 0 0 2px 1px var(--primary-transparent-color);
 }
 .search-color:hover{
-    background-color: var(--light-color);
+    background-color: var(--light3-color);
 }
 .footer{
     background-color: var(--light2-color);
