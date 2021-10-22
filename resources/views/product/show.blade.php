@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-sm-4">
         <br><br>
-            <img class="rounded" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="350" alt="{{$product->image}}">
+            <img class="rounded shadow" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="350" alt="{{$product->image}}">
     </div>
     <div class="col">
             <div class="form-floating">

@@ -74,6 +74,11 @@ label{
 .link-color:hover, .dropdown-item:hover{
     color: var(--primary-color);
 }
+
+.rounded-circle{
+    border: 1px solid var(--secondary-transparent-color);
+}
+
 .card-color{
     background-color: var(--light2-color);
     color: var(--text2-color);

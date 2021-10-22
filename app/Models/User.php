@@ -16,7 +16,7 @@ class User extends Authenticatable
 		'name' => 'required',
 		'email' => 'required',
 		'rol_id' => 'required',
-		'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+		'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 		'address' => '',
 		'telephone' => '',
 		'provider_id' => '',

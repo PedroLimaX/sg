@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
     
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/diseno.css') }}" rel="stylesheet">
     
 </head>
 <body>
@@ -41,7 +41,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     
-                    <form class="d-flex col-sm-5">
+                    <form action="{{ route('products.index') }}" class="d-flex col-sm-5">
                         <input class="form-control me-4 search-color" name="search" value="" type="search" placeholder="Buscar" aria-label="search">
                         &nbsp<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                     </form>
@@ -62,7 +62,10 @@
                             @endif
                             
                         @else
-                        <img src="{{URL::asset('../storage/app/public/uploads/'.Auth::user()->image)}}" alt=""  width="30">
+                        <div class="text-center">
+                        <img src="{{URL::asset('../storage/app/public/uploads/'.Auth::user()->image)}}" alt=""  class="rounded-circle shadow" width="35" height="35" data-holder-rendered="true">
+                        </div>
+                        
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle rounded link-color" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -124,10 +127,7 @@
 <div class="container-fluid">
     <div class="row align-items-start">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 navbar flex-column align-items p-2 shadow navbar-color">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100">
-                <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto  text-decoration-none">
-                 <label class="fs-5 d-none d-sm-inline">Menu</label>
-                </a>
+            <div class="d-flex flex-column align-items-start align-items-sm-start px-0 pt-0 ">
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start" id="menu">
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle link-color">
