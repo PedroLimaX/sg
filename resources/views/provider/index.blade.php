@@ -90,9 +90,10 @@
 </div>
 @endif
 <br>
-
+@if(Auth::user()->rol_id==1)
 <a href="{{ route('providers.create') }}" class="btn btn-tertiary"><i class="fas fa-user-plus"></i> Nuevo Proveedor</a>
 <br><br>
+@endif
 <div class="row row-cols-1 row-cols-md-4 g-4" >
         @foreach( $providers as $provider)
 
@@ -111,6 +112,7 @@
             <p class="card-text">{{ $provider->email}}</p>
             </a>
         </div>
+        @if(Auth::user()->rol_id==1)
         <div class="card-footer text-muted">
             <form action="{{ route('providers.destroy',$provider->id) }}" method="POST">
                 @csrf
@@ -118,6 +120,7 @@
                 <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i></button>
             </form>
         </div>
+        @endif
     </div>
   </div>
   

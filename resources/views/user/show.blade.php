@@ -5,7 +5,11 @@
 <form action="{{ url('/user/'.$user->id) }}" method="post" enctype="multipart/form-data">
 @csrf
 {{ method_field('PATCH') }}
+@if(Auth::user()->rol_id==1)
 <a class="btn btn-secondary btn-lg" href="{{ url('users/') }}"><i class="fas fa-chevron-circle-left"></i></a>
+@else
+    <a class="btn btn-secondary btn-lg" href="{{ url('products/') }}"><i class="fas fa-chevron-circle-left"></i></a>
+@endif
 <h1 class="text-break">{{$user->name}}</h1>
 
 @if(count($errors)>0)
@@ -61,7 +65,7 @@
 <div class="col-md-3 offset-md-9">
 
 @if(isset(Auth::user()->id))
-    @if(Auth::user()->rol_id==1)
+    @if((Auth::user()->rol_id==1)||($user->id==Auth::user()->id))
     <a href="{{ route('users.edit',$user->id) }}" class="btn btn-tertiary btn-lg"><i class="fa fa-fw fa-edit"></i></a>
     @endif
 @endif

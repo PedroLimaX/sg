@@ -65,10 +65,15 @@
 <br>
 
 <div class="col-md-5 offset-md-8">
-    
-<a href="{{ route('providers.edit',$provider->id) }}" class="btn btn-tertiary btn-lg"><i class="fa fa-fw fa-edit"></i></a>
-    <a class="btn btn-primary btn-lg" href="#"><i class="fas fa-table"></i></a>
-    
+@if(Auth::check())
+    @if((Auth::user()->rol_id==1)||($provider->id==Auth::user()->provider_id))
+    <a href="{{ route('providers.edit',$provider->id) }}" class="btn btn-tertiary btn-lg"><i class="fa fa-fw fa-edit"></i></a>
+    @endif
+
+    @if($provider->id==Auth::user()->provider_id)
+        <a class="btn btn-primary btn-lg" href="#"><i class="fas fa-table"></i></a>
+    @endif
+@endif
 </div>
 
 <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion

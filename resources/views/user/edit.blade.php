@@ -14,7 +14,7 @@
                     <div class="card-body">
                     <form method="POST" action="{{ route('users.store') }}"  role="form" enctype="multipart/form-data">
                         @csrf
-                        @include('user.form', ['modo'=>'Crear'])
+                        @include('user.form', ['modo'=>'Editar'])
                     </form>
                     </div>
                 </div>

@@ -49,14 +49,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
-        
         $request->validate(User::$rules);
 
         $input=$request->all();
         
         if ($image = $request->file('image')) {
-            $destinationPath = "..storage/app/public/uploads/";
+            $destinationPath = "../storage/app/public/uploads/";
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -107,21 +105,20 @@ class UserController extends Controller
     {
         $request->validate(User::$rules);
 
-        $input = $request->all();
-  
+        $input=$request->all();
+        
         if ($image = $request->file('image')) {
             $destinationPath = "../storage/app/public/uploads/";
-            $profileImage = $user->id . "." . $image->getClientOriginalExtension();
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
-        }else{
-            unset($input['image']);
         }
 
-        $user->update($input);
+        User::create($input);
+        
 
         return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
+            ->with('success', 'user created successfully.');
     }
 
     /**

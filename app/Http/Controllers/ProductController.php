@@ -39,7 +39,7 @@ class ProductController extends Controller
             $products = Product::paginate();
         }
 
-        return view('product.index', compact('products','category'))
+        return view('product.index', compact('products','category','filter'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
 

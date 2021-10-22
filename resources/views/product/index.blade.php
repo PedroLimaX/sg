@@ -13,31 +13,31 @@
 </div>
 @endif
 
-
-
 <br>
 @if(isset($category))
  @switch($category)
     @case(1)
-    <h1>Iluminacion Interior</h1>
+    <h5>Iluminacion Interior</h5>
     @break
 
     @case(2)
-    <h1>Iluminacion Exterior</h1>
+    <h5>Iluminacion Exterior</h5>
     @break
     
     @case(3)
-    <h1>Iluminacion Automotriz</h1>
+    <h5>Iluminacion Automotriz</h5>
     @break
 
     @case(4)
-    <h1>Iluminacion Industrial</h1>
+    <h5>Iluminacion Industrial</h5>
     @break
     
     @case(5)
-    <h1>Repuestos y Accesorios</h1>
+    <h5>Repuestos y Accesorios</h5>
     @break
   @endswitch
+ @elseif(isset($filter))
+    <h5> Resultados para "{{$filter}}"</h5>
  @else
  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner shadow-lg">
