@@ -17,9 +17,9 @@ class User extends Authenticatable
 		'email' => 'required',
 		'rol_id' => 'required',
 		'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-		'address' => 'required',
-		'telephone' => 'required',
-		'provider_id' => 'required',
+		'address' => '',
+		'telephone' => '',
+		'provider_id' => '',
     ];
 
     protected $perPage = 20;

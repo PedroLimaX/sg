@@ -105,20 +105,21 @@ class UserController extends Controller
     {
         $request->validate(User::$rules);
 
-        $input=$request->all();
-        
+        $input = $request->all();
+  
         if ($image = $request->file('image')) {
             $destinationPath = "../storage/app/public/uploads/";
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
         }
 
-        User::create($input);
-        
+        $user->update($input);
 
         return redirect()->route('users.index')
-            ->with('success', 'user created successfully.');
+            ->with('success', 'User updated successfully');
     }
 
     /**

@@ -12,7 +12,8 @@
                 <div class="card-default">
                     <h1>Editar Usuario</h1>
                     <div class="card-body">
-                    <form method="POST" action="{{ route('users.store') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('users.update', $user->id) }}"  role="form" enctype="multipart/form-data">
+                        {{ method_field('PATCH') }}
                         @csrf
                         @include('user.form', ['modo'=>'Editar'])
                     </form>

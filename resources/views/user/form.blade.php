@@ -1,4 +1,3 @@
-
     <div class="row">
     <div class="col-sm-4">
             
@@ -39,6 +38,7 @@
                 </div>
             </div>
             <br>
+            
    </div>
 </div>
 
