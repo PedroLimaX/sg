@@ -87,12 +87,11 @@
 <br>
 
 <div class="col-md-3 offset-md-9">
-
-<div class="input-group mb-1">
-    <span class="form-control" for="inputGroupFile01">Cantidad</span>
-    <input class="form-control" type="number" id="quant_product" name="quant_product" value="1"
-       min="1" max="{{$product->max_per_order}}">
-       <a class="form-control btn btn-primary" href="{{url('carts/')}}" title="Añadir al carrito"><i class="fas fa-cart-plus"></i></a>
+    <div class="input-group mb-3">
+        <span class="form-control" for="inputGroupFile01">Cantidad</span>
+        <input class="form-control" type="number" id="quant_product" name="quant_product" value="1"
+            min="1" max="{{$product->max_per_order}}">
+        <a class="form-control btn btn-primary" href="{{url('carts/')}}" title="Añadir al carrito"><i class="fas fa-cart-plus"></i></a>
     </div>
 </div>
 <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion

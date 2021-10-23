@@ -5,7 +5,7 @@
                 @if(isset($provider->image))
                     <img class="rounded" src="../storage/app/public/uploads/{{$provider->image }}" width="300" alt="">
                 @endif
-                <input class="form-control btn-secondary" type="file" name="image" value="" id="image">
+                <input class="form-control btn" type="file" name="image" value="" id="image">
             </div>
             <div class="col">
                 {{ Form::label('Nombre') }}
@@ -14,7 +14,7 @@
                 <br>
 
                 {{ Form::label('Descripcion') }}
-                {{ Form::textarea('description', $provider->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
+                {{ Form::textarea('description', $provider->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion', 'size'=>'20x5']) }}
                 {!! $errors->first('description', '<div class="invalid-feedback">:message</p>') !!}
                 <br>
 

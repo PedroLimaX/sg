@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
     
-    <link href="{{ asset('css/diseno.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
 </head>
 <body>
@@ -209,23 +209,23 @@
   <footer class="footer shadow-lg text-center">
   <!-- Grid container -->
   
-  <div class="container-fluid p-4 pb-1">
+  <div class="container-fluid p-3 pb-1">
     <!-- Section: Social media -->
     <section class="mb-3">
       <!-- Facebook -->
-      <a class="btn btn-primary btn-lg btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-primary btn-lg" href="#"
         ><i class="fab fa-facebook"></i
       ></a>
       <!-- Twitter -->
-      <a class="btn btn-primary btn-lg btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-primary btn-lg" href="#"
         ><i class="fab fa-twitter"></i
       ></a>
       <!-- Instagram -->
-      <a class="btn btn-primary btn-lg btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-primary btn-lg" href="#"
         ><i class="fab fa-instagram"></i
       ></a>
       <!-- Whatsapp -->
-      <a class="btn btn-primary btn-lg btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-primary btn-lg" href="#"
         ><i class="fab fa-whatsapp"></i
       ></a>
     </section>

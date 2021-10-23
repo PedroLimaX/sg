@@ -1,7 +1,7 @@
 @extends('layouts.app')
     @section('content')
         <section class="content container-fluid">
-            <a class="btn btn-secondary" href="{{ url('users/'.$user->id.'/') }}"><i class="fas fa-chevron-circle-left"></i></a>
+            <a class="btn btn-secondary btn-lg" href="{{ url('users/'.$user->id.'/') }}"><i class="fas fa-chevron-circle-left"></i></a>
                 <div class="col-md-12">
                     @includeif('partials.errors')
                     <div class="card-default">

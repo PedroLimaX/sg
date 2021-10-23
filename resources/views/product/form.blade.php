@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-4">
         <img class="rounded" src="../storage/app/public/uploads/{{$product->image}}" width="300" alt="">
-        <input class="form-control btn-secondary" type="file" name="image" value="" id="image">
+        <input class="form-control btn" type="file" name="image" value="" id="image">
     </div>
     <div class="col">
         {{ Form::label('Clave') }}
@@ -15,12 +15,12 @@
         <br>
 
         {{ Form::label('Descripcion') }}
-        {{ Form::textarea('description', $product->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
+        {{ Form::textarea('description', $product->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion', 'size'=>'20x5']) }}
         {!! $errors->first('description', '<p class="invalid-feedback">:message</p>') !!}
         <br>
 
         {{ Form::label('Especificaciones') }}
-        {{ Form::textarea('specs', $product->specs, ['class' => 'form-control' . ($errors->has('specs') ? ' is-invalid' : ''), 'placeholder' => 'Especificaciones']) }}
+        {{ Form::textarea('specs', $product->specs, ['class' => 'form-control' . ($errors->has('specs') ? ' is-invalid' : ''), 'placeholder' => 'Especificaciones', 'size'=>'20x5']) }}
         {!! $errors->first('specs', '<p class="invalid-feedback">:message</p>') !!}
         <br>
         <div class="row">

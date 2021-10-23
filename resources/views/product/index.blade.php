@@ -73,7 +73,6 @@
               <a href="{{ route('products.show',$product->id) }}" class="card-link">
                 <img class="rounded mx-auto d-block" src="../storage/app/public/uploads/{{$product->image}}" width="60%" style="margin:5%" alt="Imagen no disponible">
               </a>
-
               <div class="card-body">
                 <a href="{{ route('products.show',$product->id) }}" class="card-link">
                   <h5 class="card-title">{{ $product->name}}</h5>
@@ -82,6 +81,7 @@
                   <h6 class="card-subtitle mb-2 text-muted">${{ $product->price}} MXN</h6>
                 </a>
               </div>
+              <!--
               <div class="card-footer text-muted">
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
                   @csrf
@@ -89,6 +89,7 @@
                   <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i></button>
                 </form>
               </div>
+              --->
             </div>
           </div>
         @endforeach
@@ -98,6 +99,8 @@
       @endif
       {!! $products->links()!!}
     </div>
+
+
   @endsection
 
 

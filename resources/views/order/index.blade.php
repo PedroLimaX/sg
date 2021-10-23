@@ -1,6 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
+  <h1>{{ __('Mis pedidos') }}</h1>
    
     <div class="container">
   @if(Session::has('mensaje'))
