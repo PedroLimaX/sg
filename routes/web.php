@@ -29,5 +29,8 @@ Route::resource('carts', App\Http\Controllers\CartController::class);
 Route::resource('orders', App\Http\Controllers\OrderController::class);
 Route::resource('rols', App\Http\Controllers\RolController::class);
 
+Route::get('/product/import-form',[ProductController::class,'importForm']);
+Route::post('/product/import',[ProductController::class,'import'])->name('product.import');
+
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
 Route::get('/', [ProductController::class, 'index'])->name('home');

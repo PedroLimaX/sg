@@ -54,30 +54,30 @@
             
             <button class="carousel-control-prev" style="background-color:transparent; border:none" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
               <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
+              <span class="visually-hidden"></span>
             </button>
             
             <button class="carousel-control-next" style="background-color:transparent; border:none" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+              <span class="visually-hidden"></span>
             </button>
           </div> 
         </div>
       @endif
       <!--<a href="{{ route('products.create') }}" class="btn btn-tertiary"><i class="fas fa-box"></i> Nuevo Producto</a>-->
       <br><br>
-      <div class="row row-cols-1 row-cols-md-4 g-4" >
+      <div class="row row-cols-1 row-cols-md-4 g-4">
         @foreach( $products as $product)
-          <div class="col">
-            <div class="card h-100 text-center shadow">
+          <div class="col" style="margin-top:20px">
+            <div class="card h-100 text-center">
               <a href="{{ route('products.show',$product->id) }}" class="card-link">
                 <img class="rounded mx-auto d-block" src="../storage/app/public/uploads/{{$product->image}}" width="60%" style="margin:5%" alt="Imagen no disponible">
               </a>
               <div class="card-body">
                 <a href="{{ route('products.show',$product->id) }}" class="card-link">
                   <h5 class="card-title">{{ $product->name}}</h5>
-                  <p class="card-text"> Stock @if (($product->stock)>0) Disponible @else No disponible @endif</p>
-                  <p class="card-text">{{ $product->category->name}}</p>
+                  <p class="card-text"> Stock @if (($product->stock)>0) Disponible @else Agotado @endif</p>
+                  <p class="card-text">{{ $product->maker}}</p>
                   <h6 class="card-subtitle mb-2 text-muted">${{ $product->price}} MXN</h6>
                 </a>
               </div>
@@ -94,13 +94,11 @@
           </div>
         @endforeach
       </div>
-      @if(empty($products))
-        Sin resultados
-      @endif
-      {!! $products->links()!!}
+      <div class="d-flex justify-content-center" style="margin-top:20px">
+        {!! $products->links() !!}
+      </div>
     </div>
-
-
+    
   @endsection
 
 

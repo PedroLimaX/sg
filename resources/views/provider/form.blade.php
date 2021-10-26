@@ -2,10 +2,9 @@
     <div class="box-body">
         <div class="row">
             <div class="col-sm-4">
-                @if(isset($provider->image))
-                    <img class="rounded" src="../storage/app/public/uploads/{{$provider->image }}" width="300" alt="">
-                @endif
-                <input class="form-control btn" type="file" name="image" value="" id="image">
+                <img class="rounded shadow" src="{{asset('../storage/app/public/uploads/'.$provider->image)}}" width="300" alt="">
+                <br><br>
+                <input class="form-control btn" type="file" name="image" value="{{isset($provider->image)}}" id="image">
             </div>
             <div class="col">
                 {{ Form::label('Nombre') }}

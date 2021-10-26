@@ -58,7 +58,7 @@
                                     <i class="fa fa-fw fa-edit"></i></a>
                             @endif
                             @if($provider->id==Auth::user()->provider_id)
-                                <a class="btn btn-primary btn-lg" href="#">
+                                <a class="btn btn-primary btn-lg" href="{{url('product/import-form')}}">
                                     <i class="fas fa-table"></i></a>
                             @endif
                         @endif

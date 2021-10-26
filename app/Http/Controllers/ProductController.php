@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Provider;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Imports\ProductImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 use Illuminate\Support\Facades\Storage;
@@ -30,15 +32,14 @@ class ProductController extends Controller
             ->orWhere('name','like',"%$filter%")
             ->orWhere('description','like',"%$filter%")
             ->orWhere('specs','like',"%$filter%")
-            ->orWhere('maker','like',"%$filter%")->paginate();
+            ->orWhere('maker','like',"%$filter%")->paginate(12);
         }
         else if($category){
-            $products = Product::where('category_id','like',"$category")->paginate();
+            $products = Product::where('category_id','like',"$category")->paginate(12);
         }
         else{
-            $products = Product::paginate();
+            $products = Product::paginate(12);
         }
-
         return view('product.index', compact('products','category','filter'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
@@ -150,4 +151,18 @@ class ProductController extends Controller
         return redirect()->route('products.index')
             ->with('success', 'product deleted successfully');
     }
+    
+
+    public function importForm(){
+        return view('product.import-form');
+    }
+    public function import(Request $request){
+        $request->validate([
+            'csv-file' => 'required|mimes:csv'
+        ]);
+        Excel::import(new ProductImport,request()->file('csv-file'));
+        return redirect()->route('products.index')
+            ->with('success', 'Inventario Actualizado Correctamente');
+    }
+
 }

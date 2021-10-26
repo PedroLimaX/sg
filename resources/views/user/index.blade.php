@@ -9,7 +9,8 @@
                     </button>
                 </div>
             @endif
-            <a href="{{ url('user/create') }}" class="btn btn-tertiary">Registrar nuevo usuario</a>
+            <!--<a href="{{ url('user/create') }}" class="btn btn-tertiary">
+            <i class="fas fa-user-plus"></i> Nuevo usuario</a>-->
             <br><br>
             <table class="table table-borderless table-hover">
                 <thead class="">

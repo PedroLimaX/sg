@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">-->
 
     <!-- Styles -->
+    
     <link href="{{ asset('css/app.css') }}" rel ="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
@@ -31,7 +32,7 @@
         <nav class="navbar navbar-expand-lg shadow navbar-static-top navbar-color">
             <div class="container-fluid">
                 <a class="navbar-brand link-color" href="{{ route('products.index') }}">
-                    <img src="{{ asset('/storage/sg_logo.png') }}" alt="SG logo"  width="168"  class="d-inline-block align-text-top">
+                    <img src="{{ asset('/storage/sg_logo.png') }}" alt="SG logo"  width="200"  class="d-inline-block align-text-top">
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -45,8 +46,8 @@
                         <input class="form-control me-4 search-color" name="search" value="" type="search" placeholder="Buscar" aria-label="search">
                         &nbsp<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                     </form>
+
                     <!-- Right Side Of Navbar -->
-                    
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->                  
                         @guest
@@ -63,7 +64,7 @@
                             
                         @else
                         <div class="text-center">
-                        <img src="{{URL::asset('../storage/app/public/uploads/'.Auth::user()->image)}}" alt=""  class="rounded-circle shadow" width="35" height="35" data-holder-rendered="true">
+                        <img src="{{URL::asset('../storage/app/public/uploads/'.Auth::user()->image)}}" alt=""  class="rounded-circle shadow" width="40" height="40" data-holder-rendered="true">
                         </div>
                         
                             <li class="nav-item dropdown">
@@ -109,14 +110,12 @@
                             </li>
                         @endguest
                         <li>
-                        <div class="btn d-inline-block toggle-container">
                             <button class="theme-btn light" onclick="setTheme('light')" title="Light mode">
-                            <img src="{{ asset('/storage/default.png') }}" alt="sun" class="rounded" alt="">
+                            <img src="{{ asset('/storage/default.png') }}" alt="sun" width="30" class="rounded" alt="">
                             </button>
                             <button class="theme-btn dark" onclick="setTheme('dark')" title="Dark mode">
-                            <img src="{{ asset('/storage/dark.png') }}" alt="moon" class="rounded" alt="">
+                            <img src="{{ asset('/storage/dark.png') }}" alt="moon" width="30" class="rounded" alt="">
                             </button>
-                        </div>
                         </li>
                     </ul>
                 </div>
@@ -126,8 +125,8 @@
 
 <div class="container-fluid">
     <div class="row align-items-start">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 navbar flex-column align-items p-2 shadow navbar-color">
-            <div class="d-flex flex-column align-items-start align-items-sm-start px-0 pt-0 ">
+        <div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 navbar flex-column align-items-start p-2 shadow navbar-color" style="position:sticky; top:0">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-2 pt-2 ">
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start" id="menu">
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle link-color">
@@ -188,18 +187,19 @@
                         <a href="http://wa.me/+522462380354" target="_blank"class="nav-link px-0 align-middle link-color">
                         <i class="fas fa-hand-holding-usd"></i></i> <span class="ms-1 d-none d-sm-inline">Cotizaciones</span></a>
                     </li>
-                    
+                    <div class="px-4">
+                        <img src="http://pa1.narvii.com/7450/ee32253654850692d9c3e7a5d64ded6c2543b1f6r1-320-320_00.gif" class="rounded mx-auto d-block" alt="..."  width="150">      
+                    </div>
                 </ul>
             </div>
         </div>
-        <div class="col py-3">
+        <div class="col py-3" id="content">
             <main class="py-4">
                 @yield('content')
             </main>
         </div>
     </div>
 </div>
-
 <script>
     const setTheme = theme => document.documentElement.className = theme;
     </script>
