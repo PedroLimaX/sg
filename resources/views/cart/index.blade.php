@@ -36,10 +36,9 @@
                           <td>{{ ($cart->product->price)*($cart->quant_product) }}</td>
                           <td>
                             <form action="{{ route('carts.destroy',$cart->id) }}" method="POST">
-                              <a class="btn btn-sm btn-success" href="{{ route('carts.edit',$cart->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
                             </form>
                           </td>
                         </tr>

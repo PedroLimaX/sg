@@ -188,7 +188,7 @@
                         <i class="fas fa-hand-holding-usd"></i></i> <span class="ms-1 d-none d-sm-inline">Cotizaciones</span></a>
                     </li>
                     <div class="px-4">
-                        <img src="http://pa1.narvii.com/7450/ee32253654850692d9c3e7a5d64ded6c2543b1f6r1-320-320_00.gif" class="rounded mx-auto d-block" alt="..."  width="150">      
+                        <!--<img src="http://pa1.narvii.com/7450/ee32253654850692d9c3e7a5d64ded6c2543b1f6r1-320-320_00.gif" class="rounded mx-auto d-block" alt="..."  width="150">  -->    
                     </div>
                 </ul>
             </div>
