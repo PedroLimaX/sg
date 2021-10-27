@@ -161,7 +161,7 @@ class ProductController extends Controller
             'csv-file' => 'required|mimes:csv'
         ]);
         Excel::import(new ProductImport,request()->file('csv-file'));
-        return redirect()->route('products.index')
+        return redirect()->route('providers.index')
             ->with('success', 'Inventario Actualizado Correctamente');
     }
 

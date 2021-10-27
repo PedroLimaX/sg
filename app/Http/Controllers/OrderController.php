@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Provider;
 use Illuminate\Http\Request;
 
 
@@ -28,7 +29,8 @@ class OrderController extends Controller
         $orders = Order::paginate();
         $carts=Cart::paginate();
         $products= Product::paginate();
-        return view('order.index', compact('orders', 'carts','products'))
+        $providers= Provider::paginate();
+        return view('order.index', compact('orders','carts','products','providers'))
             ->with('i', (request()->input('page', 1) - 1) * $orders->perPage());
     }
 
@@ -40,9 +42,10 @@ class OrderController extends Controller
     public function create()
     {
         $order = new Order();
-        $users= User::pluck('name', 'id');
+        $carts= User::pluck('product_id', 'id');
+        $users= Cart::pluck('name', 'id');
         $products= Product::pluck('name', 'id');
-        return view('order.create', compact('order','users','products'));
+        return view('order.create', compact('order','carts','users','products'));
     }
 
     /**
@@ -95,7 +98,7 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::find($id);
-        $users= Category::pluck('code', 'id');
+        $users= Category::pluck('name', 'id');
         $carts= Provider::pluck('code', 'id');
         return view('order.edit', compact('Order','users','carts'));
     }

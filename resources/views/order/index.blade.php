@@ -14,17 +14,19 @@
 @endif
 <div class="md-1">
   @foreach( $orders as $order)
-  @if(($order->user_id)==Auth::user()->id)
+
+  @if((Auth::user()->id==$order->user_id)||(Auth::user()->provider_id==$order->cart->provider_id))
       <div class="card h-100 text-center">
         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <label class="mb-1">Pedido nº {{ $order->code}}</label>
+          <p class="mb-1">Pedido para: {{ $order->user->name}}</p>
           <i><p class="mb-1">Estado: {{ $order->status}}</p></i>
           <small class="text-muted">Pedido realizado el {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y')}}</small>
         </div>
         <!--{{$total=0}}-->
         @foreach( $carts as $cart)
-        @if(($cart->user_id)==Auth::user()->id)
+        @if((($cart->user_id)==Auth::user()->id)||(($cart->provider_id)==Auth::user()->provider_id))
           <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
               <img src="../storage/app/public/uploads/{{$cart->product->image}}" alt="{{ $cart->product->image}}" width="70px">

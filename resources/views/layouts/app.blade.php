@@ -85,7 +85,7 @@
 
                                     <div class="dropdown-divider"></div>
                                     
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item disabled">
                                     @if((Auth::user()->rol_id)==1)
                                         <i class="fas fa-user-shield"></i>
                                     @elseif ((Auth::user()->rol_id)==2)
@@ -99,6 +99,7 @@
                                         <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
                                     @elseif(Auth::user()->rol_id==2)
                                         <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
+                                        <a class="dropdown-item" href="{{ route('providers.show', Auth::user()->provider_id) }}">{{ __('Proveedor') }}</a>
                                     @else
                                     <a class="dropdown-item" href="{{ route('carts.index') }}">{{ __('Mi Carrito') }}</a>
                                     <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>

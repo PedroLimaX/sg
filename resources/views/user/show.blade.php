@@ -2,6 +2,14 @@
 
     @section('content')
         <div class="container">
+        @if(Session::has('success'))
+                <div class="alert alert-success" roler="alert">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+        @endif
             <form action="{{ url('/user/'.$user->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('PATCH') }}
@@ -24,7 +32,14 @@
                 @endif
                 <div class="row">
                     <div class="col-sm-4">
-                        <img class="rounded shadow" src="{{URL::asset('../storage/app/public/uploads/'.$user->image)}}" width="350" alt="{{$user->image}}">
+                    @if(isset($user->image))
+                        <div class="gallery-main">
+                            <figure>
+                                <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$user->image)}}" width="500" alt="{{$user->image}}">
+                                <figcaption>{{$user->name}} <small>{{$user->image}}</small></figcaption>
+                            </figure>
+                        </div>
+                    @endif
                     </div>
                     <div class="col">
                         <label for="email">Correo</label>
@@ -44,12 +59,18 @@
                             </div>
                         </div>
                         <br>
-                        <label for="Rol">Rol</label>
-                        <h5 class="text-break">{{$user->rol->name}}</h5>
-                        @if(($user->rol_id)=='2')
-                            <label for="Proveedor">Proveedor</label>
-                            <h5 class="text-break">{{$user->provider->name}}</h5>
-                        @endif
+                        <div class="row">
+                            <div class="col">
+                                <label for="Rol">Rol de usuario</label>
+                                <h5 class="text-break">{{$user->rol->name}}</h5>
+                            </div>
+                            <div class="col">
+                                @if(($user->rol_id)=='2')
+                                    <label for="Proveedor">Proveedor</label>
+                                    <h5 class="text-break">{{$user->provider->name}}</h5>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>

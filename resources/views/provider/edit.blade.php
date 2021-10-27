@@ -8,7 +8,8 @@
                 <div class="card-default">
                     <h1>Editar Proveedor</h1>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('providers.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('providers.update', $provider->id) }}"  role="form" enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}    
                             @csrf
                             @include('provider.form', ['modo'=>'Crear'])
                         </form>

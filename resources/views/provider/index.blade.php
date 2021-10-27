@@ -4,16 +4,16 @@
     @endsection
     @section('content')
         <div class="container">
-            @if(Session::has('mensaje'))
-                <div class="alert alert-success" roler="alert">
-                    {{ Session::get('mensaje') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <h1>{{ __('Nuestros Proveedores') }}</h1>
+
+            @if(Session::has('success'))
+                <div class="alert alert-success fade show d-inline-flex" roler="alert">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left:10px">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             @endif
-
-            <h1>{{ __('Nuestros Proveedores') }}</h1>
 
             @if(Auth::check())
                 @if(Auth::user()->rol_id==1)
@@ -32,9 +32,10 @@
                             <div class="card-body">
                                 <a href="{{ route('providers.show',$provider->id) }}" class="card-link">
                                 <h5 class="card-title">{{ $provider->name}}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Contactos</h6>
-                                <p class="card-text">{{ $provider->telephone}}</p>
-                                <p class="card-text">{{ $provider->email}}</p>
+                                <p class="card-text mb-1 text-muted">Contactos</p>
+                                <span class="card-text"><small><i class="fas fa-phone text-muted"></i></small> {{ $provider->telephone}}</span>
+                                <br>
+                                <span class="card-text"><small><i class="fas fa-at text-muted"></i></small> {{ $provider->email}}</span>
                                 </a>
                             </div>
                             @if(Auth::check())

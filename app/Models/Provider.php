@@ -30,7 +30,7 @@ class Provider extends Model
 		'email' => 'required',
 		'telephone' => 'required',
 		'location' => 'required',
-		'image' => 'required',
+		'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
 
     protected $perPage = 20;

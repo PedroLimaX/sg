@@ -59,5 +59,11 @@ class Order extends Model
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
     
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function cart()
+    {
+        return $this->hasOne('App\Models\Cart', 'id', 'cart_id');
+    }
 }

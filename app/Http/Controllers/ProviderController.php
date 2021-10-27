@@ -56,7 +56,7 @@ class ProviderController extends Controller
         Provider::create($input);
 
         return redirect()->route('providers.index')
-            ->with('success', 'provider created successfully.');
+            ->with('success', 'Proveedor creado correctamente');
     }
 
     /**
@@ -92,7 +92,7 @@ class ProviderController extends Controller
      * @param  Providers $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Providers $provider)
+    public function update(Request $request, Provider $provider)
     {
         request()->validate(Provider::$rules);
 
@@ -109,8 +109,8 @@ class ProviderController extends Controller
 
         $provider->update($input);
 
-        return redirect()->route('providers.index')
-            ->with('success', 'provider updated successfully');
+        return redirect('providers')
+            ->with('success', 'Proveedor actualizado correctamente');
     }
 
     /**
@@ -123,6 +123,6 @@ class ProviderController extends Controller
         $provider = Provider::find($id)->delete();
 
         return redirect()->route('providers.index')
-            ->with('success', 'provider deleted successfully');
+            ->with('success', 'Proveedor eliminado correctamente');
     }
 }

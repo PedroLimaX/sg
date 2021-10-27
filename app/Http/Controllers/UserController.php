@@ -118,7 +118,7 @@ class UserController extends Controller
 
         $user->update($input);
 
-        return redirect()->route('users.index')
+        return view('user.show', compact('user'))
             ->with('success', 'User updated successfully');
     }
 

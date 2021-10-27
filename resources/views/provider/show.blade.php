@@ -2,7 +2,7 @@
     @section('content')
         <section class="content container-fluid">
             <a class="btn btn-secondary btn-lg" href="{{ route('providers.index') }}">
-                <i class="fas fa-chevron-circle-left"></i></i></a>
+                <i class="fas fa-chevron-circle-left"></i></a>
             <div class="container">
                 <form action="{{ url('/provider/'.$provider->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -20,8 +20,12 @@
                     <div class="row">
                         <div class="col-sm-4">
                             @if(isset($provider->image))
-                                <br><br>
-                                <img class="rounded shadow" src="{{URL::asset('../storage/app/public/uploads/'.$provider->image)}}" width="350" alt="">
+                                <div class="gallery-main">
+                                    <figure>
+                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$provider->image)}}" width="500" alt="{{$provider->image}}">
+                                        <figcaption>{{$provider->name}} <small>{{$provider->image}}</small></figcaption>
+                                    </figure>
+                                </div>
                             @endif
                         </div>
                         <div class="col">
