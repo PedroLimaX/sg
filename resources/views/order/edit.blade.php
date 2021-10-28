@@ -1,24 +1,24 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Update Producto
+    Update ordero
 @endsection
 
 @section('content')
     <section class="content container-fluid">
         
-    <a class="btn btn-secondary btn-lg" href="{{ url('products/'.$product->id) }}"><i class="fas fa-chevron-circle-left"></i></a>
+    <a class="btn btn-secondary btn-lg" href="{{ url('orders/'.$order->id) }}"><i class="fas fa-chevron-circle-left"></i></a>
             <div class="col-md-12">
 
                 @includeif('partials.errors')
 
                 <div class="card-default">
-                        <h1>Editar Producto</h1>
+                        <h1>Editar ordero</h1>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('products.update', $product->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('orders.update', $order->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
-                            @include('product.form', ['modo'=>'Editar']);
+                            @include('order.form', ['modo'=>'Editar']);
                         </form>
                     </div>
                 </div>

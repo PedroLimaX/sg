@@ -15,13 +15,15 @@
 <div class="md-1">
   @foreach( $orders as $order)
 
-  @if((Auth::user()->id==$order->user_id)||(Auth::user()->provider_id==$order->cart->provider_id))
+  @if((Auth::user()->id==$order->user_id))
       <div class="card h-100 text-center">
         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
-          <label class="mb-1">Pedido nº {{ $order->code}}</label>
-          <p class="mb-1">Pedido para: {{ $order->user->name}}</p>
-          <i><p class="mb-1">Estado: {{ $order->status}}</p></i>
+          <b><p class="mb-1">Pedido nº {{ $order->code}}</p></b>
+          <p class="mb-1"><i>Envio para</i>
+            <b>{{ $order->user->name}}</b> |
+            <i class=" text-muted fas fa-map-marker-alt"></i>
+              {{$order->user->address}}</p>
           <small class="text-muted">Pedido realizado el {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y')}}</small>
         </div>
         <!--{{$total=0}}-->
@@ -31,7 +33,8 @@
             <div class="d-flex w-100 justify-content-between">
               <img src="../storage/app/public/uploads/{{$cart->product->image}}" alt="{{ $cart->product->image}}" width="70px">
               <b><p class="mb-1 text-left"> {{$cart->product->name}}</p></b>
-              <small class="text-muted text-right">Subtotal: ${{($cart->quant_product)*($cart->product->price)}} MXN | {{$cart->quant_product}} piezas </small>
+              <p class="mb-1 text-left"> {{$cart->cart_status->name}}</p>
+              <small class="text-muted text-right">Subtotal: ${{($cart->subtotal)}} MXN | {{$cart->quant_product}} piezas </small>
               <!--@if(($cart->user->id)==Auth::user()->id) Total: {{ $total = $total + (($cart->quant_product)*($cart->product->price))}} @endif-->
             </div>
           </a>
@@ -39,11 +42,11 @@
         @endforeach
         <br>
         <div>
-          <b><p class="text-muted text-center">@if(($order->user->id)==Auth::user()->id) Total: ${{$total}} MXN @endif</p></b>
+          <b><p class="text-muted text-center">Total: ${{$order->total}} MXN </p></b>
         </div>
       </a>
     </div>
-    @endif
+      @endif
   @endforeach
 </div>
 {!! $orders->links()!!}

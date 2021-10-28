@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 /**
  * Class ProductController
@@ -65,8 +66,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
-        
         $request->validate(Product::$rules);
 
         $input=$request->all();
@@ -94,8 +93,30 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-
         return view('product.show', compact('product'));
+    }
+
+    public function addtocart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        /*$code= date('Ymd').$product['id'].$product['provider_id'].Auth::user()->id.$request->quant_product;
+        $cart['code']= $code;
+        $cart['product_id']=$product['id'];
+        $cart['quant_product']=$request->quant_product;
+        $cart['provider_id']=$product['provider_id'];
+        $cart['user_id'] = Auth::user()->id;
+        echo($cart['code']);*/
+        $cart = DB::table('carts')->insert([
+            'code' => $product['id'].$product['provider_id'].Auth::user()->id.$request->quant_product,
+            'product_id'=> $product['id'],
+            'quant_product'=>$request->quant_product,
+            'subtotal'=>($product['price']*$request->quant_product),
+            'provider_id'=>$product['provider_id'],
+            'user_id'=>Auth::user()->id,
+            'cart_status_id'=>1
+        ]);
+        return redirect()->route('carts.index', compact('cart'))
+        ->with('success', "Producto agregado al carrito");
     }
 
     /**
@@ -151,7 +172,6 @@ class ProductController extends Controller
         return redirect()->route('products.index')
             ->with('success', 'product deleted successfully');
     }
-    
 
     public function importForm(){
         return view('product.import-form');
@@ -164,5 +184,4 @@ class ProductController extends Controller
         return redirect()->route('providers.index')
             ->with('success', 'Inventario Actualizado Correctamente');
     }
-
 }

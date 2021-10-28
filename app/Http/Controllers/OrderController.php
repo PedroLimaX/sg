@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Provider;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -41,11 +42,25 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $order = new Order();
-        $carts= User::pluck('product_id', 'id');
-        $users= Cart::pluck('name', 'id');
-        $products= Product::pluck('name', 'id');
-        return view('order.create', compact('order','carts','users','products'));
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet.= "0123456789";
+        $max = strlen($codeAlphabet);
+
+        for ($i=0; $i < 3; $i++) {
+            $token .= $codeAlphabet[random_int(0, $max-1)];
+        }
+        $orders = DB::table('orders')->insert([
+            'code' => date('Ymd').Auth::user()->id.$token,
+            'subtotal'=> DB::table('carts')->where('user_id', Auth::user()->id)->sum('subtotal'),
+            'total'=> DB::table('carts')->where('user_id', Auth::user()->id)->sum('subtotal'),
+            'user_id' => Auth::user()->id,
+        ]);
+        $carts=DB::table('carts')
+            ->where('cart_status_id', 1 and 'user_id', Auth::user()->id)
+            ->update(['cart_status_id' => 2]);
+        
+        return redirect()->route('orders.index')->with('success', "$token");
     }
 
     /**
@@ -87,6 +102,22 @@ class OrderController extends Controller
         $order = Order::find($id);
 
         return view('order.show', compact('Order'));
+    }
+    
+    public function doOrder()
+    { 
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+        $codeAlphabet.= "0123456789";
+        $max = strlen($codeAlphabet);
+
+        for ($i=0; $i < 3; $i++) {
+            $token .= $codeAlphabet[random_int(0, $max-1)];
+        }
+        
+        return redirect()->view('carts.index')
+        ->with('success', "$token");
     }
 
     /**

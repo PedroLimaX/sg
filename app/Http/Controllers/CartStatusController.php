@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\CartStatus;
 use App\Models\Product;
 use App\Models\User;
@@ -12,10 +11,10 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 /**
- * Class CartController
+ * Class CartStatusController
  * @package App\Http\Controllers
  */
-class CartController extends Controller
+class CartStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,9 +23,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = Cart::where('cart_status_id', 1)->paginate();
-        return view('cart.index', compact('carts'))
-            ->with('i', (request()->input('page', 1) - 1) * $carts->perPage());
+        $cartstatuses = CartStatus::paginate();
+        return view('cart.index', compact('cartstatuses'))
+            ->with('i', (request()->input('page', 1) - 1) * $cartstatuses->perPage());
     }
 
     /**
@@ -36,12 +35,11 @@ class CartController extends Controller
      */
     public function create()
     {
-        $cart = new Cart();
+        $cartstatus = new CartStatus();
         $users= user::pluck('name', 'id');
-        $cart_status= user::pluck('name', 'id');
         $providers= Provider::pluck('name', 'id');
         $products= Product::pluck('name', 'id');
-        return view('cart.create', compact('cart','cart_status','users','providers','products'));
+        return view('cart.create', compact('cart','users','providers','products'));
     }
 
     /**
@@ -54,14 +52,14 @@ class CartController extends Controller
     {
         
         
-        $request->validate(Cart::$rules);
+        $request->validate(CartStatus::$rules);
 
         $input=$request->all();
         $input['product_id'] = "$product_id";
-        Cart::create($input);
+        CartStatus::create($input);
         
 
-        return redirect()->route('carts.index')
+        return redirect()->route('cartstatuses.index')
             ->with('success', 'Producto agregado al carrito.');
     }
 
@@ -73,7 +71,7 @@ class CartController extends Controller
      */
     public function show($user_id)
     {
-        $cart = Cart::find($user_id);
+        $cartstatus = CartStatus::find($user_id);
         return view('cart.show', compact('cart'));
     }
 
@@ -86,7 +84,7 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        $cart = Cart::find($id);
+        $cartstatus = CartStatus::find($id);
         $users= user::pluck('name', 'id');
         $providers= Provider::pluck('name', 'id');
         $products= Product::pluck('name', 'id');
@@ -97,12 +95,12 @@ class CartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Cart $cart
+     * @param  CartStatus $cartstatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, CartStatus $cartstatus)
     {
-        $request->validate(Cart::$rules);
+        $request->validate(CartStatus::$rules);
 
         $input = $request->all();
   
@@ -115,9 +113,9 @@ class CartController extends Controller
             unset($input['image']);
         }
 
-        $cart->update($input);
+        $cartstatus->update($input);
 
-        return redirect()->route('carts.index')
+        return redirect()->route('cartstatuses.index')
             ->with('success', 'Carrito actualizaco correctamente');
     }
 
@@ -128,8 +126,8 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        $cart = Cart::find($id)->delete();
-        return redirect()->route('carts.index')
+        $cartstatus = CartStatus::find($id)->delete();
+        return redirect()->route('cartstatuses.index')
             ->with('success', 'Producto removido correctamente');
     }
 }

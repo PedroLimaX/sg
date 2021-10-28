@@ -45,6 +45,14 @@ class Cart extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    public function cart_status()
+    {
+        return $this->hasOne('App\Models\CartStatus', 'id', 'cart_status_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function product()
     {
         return $this->hasOne('App\Models\Product', 'id', 'product_id');

@@ -4,11 +4,6 @@
         <input class="form-control btn" type="file" name="image" value="" id="image">
     </div>
     <div class="col">
-        {{ Form::label('Clave') }}
-        {{ Form::text('code', $product->code, ['class' => 'form-control' . ($errors->has('code') ? ' is-invalid' : ''), 'placeholder' => 'Clave']) }}
-        {!! $errors->first('code', '<p class="invalid-feedback">:message</p>') !!}
-        <br>
-
         {{ Form::label('Nombre') }}
         {{ Form::text('name', $product->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
         {!! $errors->first('name', '<p class="invalid-feedback">:message</p>') !!}

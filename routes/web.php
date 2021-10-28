@@ -31,6 +31,9 @@ Route::resource('rols', App\Http\Controllers\RolController::class);
 
 Route::get('/product/import-form',[ProductController::class,'importForm']);
 Route::post('/product/import',[ProductController::class,'import'])->name('product.import');
+Route::post('/product/{id}/addtocart',[ProductController::class,'addtocart'])->name('product.addtocart')->middleware('auth');
+
+Route::post('/order/doOrder',[OrderController::class,'doOrder'])->name('order.doOrder');
 
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
 Route::get('/', [ProductController::class, 'index'])->name('home');
