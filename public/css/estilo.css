@@ -198,6 +198,26 @@ table tr td{
    text-decoration:none;
 }
 
+.pagination .page-item .page-link{
+  color: var(--primary-color);
+  background-color: var(--light3-color);
+}
+.pagination .page-item .page-link:hover{
+  color: var(--primary-color);
+  background-color: var(--light2-color);
+}
+.pagination .page-item.active .page-link{
+  color: var(--fourty-color);
+  background-color: var(--primary-color);
+  border:1px solid var(--primary-color)
+}
+
+.pagination .page-item.disabled .page-link{
+  color: var(--primary-color);
+  background-color: var(--light-color);
+  border:1px solid var(--light-color)
+}
+
 .dropdown-color{
     background-color: var(--light3-color);
     border: 1px solid var(--light2-color);
@@ -713,7 +733,6 @@ img {
             transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -300, -225, 0, 1);
   }
 }
-
 /*
 * {
   border: 0.3px solid var(--margin-color);

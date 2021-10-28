@@ -100,10 +100,3 @@
     </div>
     
   @endsection
-
-
-
-
-
-
-

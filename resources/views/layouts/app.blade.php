@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
     
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
     
 </head>
 <body>
@@ -73,23 +73,11 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-color" aria-labelledby="navbarDropdown">
                                     
-                                    
-                                    <a class="dropdown-item" href="{{ url('users/'.Auth::user()->id) }}">
-                                       Ver perfil
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesión') }}
-                                    </a>
-
-                                    <div class="dropdown-divider"></div>
-                                    
-                                    <a class="dropdown-item disabled">
+                                <a class="dropdown-item disabled">
                                     @if((Auth::user()->rol_id)==1)
                                         <i class="fas fa-user-shield"></i>
                                     @elseif ((Auth::user()->rol_id)==2)
-                                        <i class="fas fa-user-cog"></i>
+                                        <i class="fas fa-user-tie"></i>
                                     @else
                                         <i class="fas fa-user"></i>
                                     @endif
@@ -99,7 +87,7 @@
                                         <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
                                     @elseif(Auth::user()->rol_id==2)
                                         <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
-                                        <a class="dropdown-item" href="{{ route('providers.show', Auth::user()->provider_id) }}">{{ __('Proveedor') }}</a>
+                                        <a class="dropdown-item" href="{{ route('providers.show', Auth::user()->provider_id) }}">{{ __('Perfil del Proveedor') }}</a>
                                     @else
                                     <a class="dropdown-item" href="{{ route('carts.index') }}">{{ __('Mi Carrito') }}</a>
                                     <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
@@ -107,6 +95,22 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item disabled">
+                                    <i class="fas fa-user-cog"></i> Cuenta</a>
+                                    
+                                    <a class="dropdown-item" href="{{ url('users/'.Auth::user()->id) }}">
+                                       Mi perfil
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar Sesión') }}
+                                    </a>
+
+                                    
+                                    
                                 </div>
                             </li>
                         @endguest
@@ -188,9 +192,16 @@
                         <a href="http://wa.me/+522462380354" target="_blank"class="nav-link px-0 align-middle link-color">
                         <i class="fas fa-hand-holding-usd"></i></i> <span class="ms-1 d-none d-sm-inline">Cotizaciones</span></a>
                     </li>
+
+                    <li class="rounded mx-auto d-block">
+                        <a href="#" target="_blank"class="nav-link px-0 align-middle link-color">
+                        <span class="ms-1 d-none d-sm-inline"><img src="{{ url('../storage/app/public/sg_watermark.png') }}"
+                            class="rounded mx-auto d-block" alt="..."  width="150"></span></a>
+                    </li>
                     <div class="px-4">
-                        <img src="http://pa1.narvii.com/7450/ee32253654850692d9c3e7a5d64ded6c2543b1f6r1-320-320_00.gif"
+                        <!--<img src="http://pa1.narvii.com/7450/ee32253654850692d9c3e7a5d64ded6c2543b1f6r1-320-320_00.gif"
                             class="rounded mx-auto d-block" alt="..."  width="150">
+                        -->                       
                     </div>
                 </ul>
             </div>
