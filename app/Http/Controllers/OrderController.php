@@ -52,13 +52,13 @@ class OrderController extends Controller
         }
         $orders = DB::table('orders')->insert([
             'code' => date('Ymd').Auth::user()->id.$token,
-            'subtotal'=> DB::table('carts')->where('user_id', Auth::user()->id)->sum('subtotal'),
-            'total'=> DB::table('carts')->where('user_id', Auth::user()->id)->sum('subtotal'),
+            'subtotal'=> DB::table('carts')->where('user_id', Auth::user()->id)->where('cart_status_id', 1)->sum('subtotal'),
+            'total'=> DB::table('carts')->where('user_id', Auth::user()->id)->where('cart_status_id', 1)->sum('subtotal'),
             'user_id' => Auth::user()->id,
         ]);
         $carts=DB::table('carts')
             ->where('cart_status_id', 1 and 'user_id', Auth::user()->id)
-            ->update(['cart_status_id' => 2]);
+            ->update(['cart_status_id' => 2, 'code'=> date('Ymd').Auth::user()->id.$token]);
         
         return redirect()->route('orders.index')->with('success', "$token");
     }
