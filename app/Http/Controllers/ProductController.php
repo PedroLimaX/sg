@@ -53,6 +53,10 @@ class ProductController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
 
+    public function gallery($id){
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -75,9 +79,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate(Product::$rules);
-
         $input=$request->all();
-        
         if ($image = $request->file('image')) {
             $destinationPath = "../storage/app/public/uploads/";
             $profileImage = "product_".$request($id).date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -107,13 +109,6 @@ class ProductController extends Controller
     public function addtocart(Request $request, $id)
     {
         $product = Product::find($id);
-        /*$code= date('Ymd').$product['id'].$product['provider_id'].Auth::user()->id.$request->quant_product;
-        $cart['code']= $code;
-        $cart['product_id']=$product['id'];
-        $cart['quant_product']=$request->quant_product;
-        $cart['provider_id']=$product['provider_id'];
-        $cart['user_id'] = Auth::user()->id;
-        echo($cart['code']);*/
         $cart = DB::table('carts')->insert([
             'code' => $product['id'].$product['provider_id'].Auth::user()->id.$request->quant_product,
             'product_id'=> $product['id'],
@@ -191,7 +186,5 @@ class ProductController extends Controller
         Excel::import(new ProductImport,request()->file('csv-file'));
         return redirect()->route('providers.index')
             ->with('success', 'Inventario Actualizado Correctamente');
-    }
-
-    
+    }   
 }

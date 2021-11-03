@@ -29,10 +29,14 @@ Route::resource('carts', App\Http\Controllers\CartController::class);
 Route::resource('orders', App\Http\Controllers\OrderController::class);
 Route::resource('rols', App\Http\Controllers\RolController::class);
 Route::resource('sliders', App\Http\Controllers\SliderController::class);
+Route::resource('imageproducts', App\Http\Controllers\ImageProductController::class);
 
 Route::get('/product/import-form',[ProductController::class,'importForm']);
 Route::post('/product/import',[ProductController::class,'import'])->name('product.import');
 Route::post('/product/{id}/addtocart',[ProductController::class,'addtocart'])->name('product.addtocart')->middleware('auth');
+
+
+
 
 Route::get('/product/offers',[ProductController::class,'offers']);
 

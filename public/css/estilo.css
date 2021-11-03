@@ -99,6 +99,7 @@ h3{
 h5{
     color: var(--primary-color);
     font-family: 'Prototype';
+    font-size: 15px;
 }
 
 h4{
@@ -112,6 +113,7 @@ label{
 }
 p{
   font-size: 16px;
+  color: var(--text-color);
 }
 .container{
     background-color: var(--light3-color);
@@ -256,6 +258,18 @@ table tr td{
 .card-link:hover{
     color: var(--text-color);
    text-decoration:none;
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+.badge-danger{
+  background-color: var(--primary-color);
+  color: var(--light3-color);
 }
 
 .pagination .page-item .page-link{

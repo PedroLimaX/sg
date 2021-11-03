@@ -7,7 +7,7 @@
     @csrf
     {{ method_field('PATCH') }}
     @if(($product->discount)>0)
-        <h4 class=""><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
+        <h4 class=""><span class="badge badge-pill badge-success">-{{$product->discount}}%</span></h4>
     @endif
     <h1 class="text-break">{{ $product->name }}</h1>
 
@@ -25,7 +25,7 @@
         <div class="col-sm-4">
             <div class="gallery-main">
                 <figure>
-                    <img class="img-fluid shadow" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
                     <figcaption>{{$product->name}} <small>{{$product->image}}</small></figcaption>
                 </figure>
             </div>
@@ -33,15 +33,15 @@
                 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
                 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                 <figure>
-                    <img class="img-fluid shadow" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
                     <figcaption>{{$product->name}} <small>{{$product->image}}</small></figcaption>
                 </figure>
                 <figure>
-                    <img class="img-fluid shadow" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
                     <figcaption>{{$product->name}} <small>{{$product->image}}</small></figcaption>
                 </figure>
                 <figure>
-                    <img class="img-fluid shadow" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
                     <figcaption>{{$product->name}} <small>{{$product->image}}</small></figcaption>
                 </figure>
             </div>
@@ -57,7 +57,7 @@
             <script src="{{asset('js/gallery.js')}}"></script>
             @if(Auth::check())
                 @if(Auth::user()->provider_id==$product->provider_id)
-                    <a href="{{ url('imageproducts/'.$product->id.'/index') }}" class="btn btn-tertiary">
+                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-tertiary">
                         <i class="fas fa-user-plus"></i> Editar galeria</a>
                     <br><br>
                 @endif

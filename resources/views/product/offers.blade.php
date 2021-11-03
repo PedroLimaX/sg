@@ -14,8 +14,8 @@
           <div class="col" style="margin-top:20px">
             <div class="card h-100 text-center">
               <a href="{{ route('products.show',$product->id) }}" class="card-link">
-                <h4 class="text-right"><span class="badge badge-pill badge-success">-{{$product->discount}}%</span></h4>
-                <img class="rounded mx-auto d-block" src="../storage/app/public/uploads/{{$product->image}}" width="60%" style="margin:5%" alt="Imagen no disponible">
+                <h4 class="text-right"><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
+                <img class="rounded mx-auto d-block" src="{{asset('../storage/app/public/uploads/'.$product->image)}}" width="60%" style="margin:5%" alt="Imagen no disponible">
               </a>
               <div class="card-body">
                 <a href="{{ route('products.show',$product->id) }}" class="card-link">

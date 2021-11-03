@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
     
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
     
 </head>
 <body>
@@ -213,9 +213,6 @@
         </div>
     </div>
 </div>
-<script>
-        const setTheme = theme => document.documentElement.className = theme;
-    </script>
     <script src="{{asset('js/theme.js')}}"></script>
 </body>
 

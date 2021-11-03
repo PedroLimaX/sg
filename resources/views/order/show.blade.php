@@ -55,14 +55,11 @@
                 <div class="col">
                     <label for="price">Precio</label>
                     <h1 class="text-break">${{ $order->price }} MXN</h1>
-                
                 </div>
             </div>
             <br>
             <label for="materials">Materiales</label>
-            
             <p class="text-break">{{ $order->materials }}</p>
-            
             <br>
             <div class="row">
                 <div class="col">

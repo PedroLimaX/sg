@@ -80,7 +80,7 @@
             <div class="card h-100 text-center">
               <a href="{{ route('products.show',$product->id) }}" class="card-link">
               @if(($product->discount)>0)
-                <h4 class="text-right"><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
+                <h4 class="text-right"><span class="badge badge-pill badge-success">-{{$product->discount}}%</span></h4>
               @endif
                 <img class="rounded mx-auto d-block" src="../storage/app/public/uploads/{{$product->image}}" width="60%" style="margin:5%" alt="Imagen no disponible">
               </a>
