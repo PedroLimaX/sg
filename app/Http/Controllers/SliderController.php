@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Provider;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 /**
- * Class ProviderController
+ * Class SliderController
  * @package App\Http\Controllers
  */
-class ProviderController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Provider::paginate();
+        $sliders = Slider::paginate();
 
-        return view('provider.index', compact('providers'))
-            ->with('i', (request()->input('page', 1) - 1) * $providers->perPage());
+        return view('slider.index', compact('sliders'))
+            ->with('i', (request()->input('page', 1) - 1) * $sliders->perPage());
     }
 
     /**
@@ -31,8 +31,8 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        $provider= new Provider();
-        return view('provider.create', compact('provider'));
+        $slider= new Slider();
+        return view('slider.create', compact('slider'));
     }
 
     /**
@@ -43,20 +43,19 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Provider::$rules);
+        request()->validate(Slider::$rules);
+
         $input=$request->all();
         
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
-            $profileImage = "provider_".$request['id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $destinationPath = "../storage/app/public/uploads";
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }
-
-        Provider::create($input);
-
-        return redirect()->route('providers.index')
-            ->with('success', 'Proveedor creado correctamente');
+        Slider::create($input);
+        return redirect()->route('sliders.index')
+            ->with('success', 'Slider creado correctamente');
     }
 
     /**
@@ -67,9 +66,9 @@ class ProviderController extends Controller
      */
     public function show($id)
     {
-        $provider= Provider::find($id);
+        $slider= Slider::find($id);
 
-        return view('provider.show', compact('provider'));
+        return view('slider.show', compact('slider'));
     }
 
     /**
@@ -80,37 +79,37 @@ class ProviderController extends Controller
      */
     public function edit($id)
     {
-        $provider= Provider::find($id);
+        $slider= Slider::find($id);
 
-        return view('provider.edit', compact('provider'));
+        return view('slider.edit', compact('slider'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Providers $provider
+     * @param  Sliders $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provider $provider)
+    public function update(Request $request, Slider $slider)
     {
-        request()->validate(Provider::$rules);
+        request()->validate(Slider::$rules);
 
         $input = $request->all();
   
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
-            $profileImage = "provider_".$provider['id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $destinationPath = "../storage/app/public/uploads";
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }else{
             unset($input['image']);
         }
 
-        $provider->update($input);
+        $slider->update($input);
 
-        return redirect('providers')
-            ->with('success', 'Proveedor actualizado correctamente');
+        return redirect('sliders')
+            ->with('success', 'Slider actualizado correctamente');
     }
 
     /**
@@ -120,9 +119,9 @@ class ProviderController extends Controller
      */
     public function destroy($id)
     {
-        $provider = Provider::find($id)->delete();
+        $slider = Slider::find($id)->delete();
 
-        return redirect()->route('providers.index')
-            ->with('success', 'Proveedor eliminado correctamente');
+        return redirect()->route('sliders.index')
+            ->with('success', 'Slider eliminado correctamente');
     }
 }

@@ -1,5 +1,4 @@
-:root,
-:root.light {
+:root {
   --light-color: #E0E0E0;
   --light2-color: #EEEEEE;
   --light3-color: #FFFFFF;
@@ -15,7 +14,7 @@
   --margin-color:rgba(106, 0, 128,0.5);
 }
 
-:root.dark {
+[data-theme="dark"] {
     --light-color: #252A34;
     --light2-color: #222831;
     --light3-color: #1B202A;
@@ -30,6 +29,62 @@
     --thead-color: #111620;
   --margin-color:rgba(149, 255, 127,0.5);
 }
+
+/*Simple css to style it like a toggle switch*/
+.theme-switch-wrapper {
+  display: flex;
+  align-items: cent er;
+}
+.theme-switch {
+  display: inline-block;
+  height: 28px;
+  position: relative;
+  width: 70px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: var(--light-color);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: var(--light3-color);
+  bottom: 4px;
+  content: "";
+  height: 20px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 20px;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.slider.round {
+  margin-left: 25px;
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 100%;
+}
+
 
 body {
     margin: 0;
@@ -81,6 +136,11 @@ p{
 
 .rounded-circle{
     border: 1px solid var(--secondary-transparent-color);
+}
+
+.carousel-caption{
+  background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 75%);
+  border-radius: 2rem;
 }
 
 .carousel-control-prev{

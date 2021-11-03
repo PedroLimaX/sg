@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
     
-    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
 </head>
 <body>
@@ -41,7 +41,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    
+                    <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                    <div class="slider round">
+                                    </div>
+                                    <i class="fas fa-adjust"></i>
+                            </label>
+                    </div>
                     <form action="{{ route('products.index') }}" class="d-flex col-sm-5">
                         <input class="form-control me-4 search-color" name="search" value="" type="search" placeholder="Buscar" aria-label="search">
                         &nbsp<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
@@ -114,14 +121,7 @@
                                 </div>
                             </li>
                         @endguest
-                        <li>
-                            <button class="theme-btn light" onclick="setTheme('light')" title="Light mode">
-                            <img src="{{ asset('/storage/default.png') }}" alt="sun" width="30" class="rounded" alt="">
-                            </button>
-                            <button class="theme-btn dark" onclick="setTheme('dark')" title="Dark mode">
-                            <img src="{{ asset('/storage/dark.png') }}" alt="moon" width="30" class="rounded" alt="">
-                            </button>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -175,8 +175,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle link-color">
-                        <i class="fas fa-dollar-sign"></i></i> <span class="ms-1 d-none d-sm-inline">Promociones</span></a>
+                        <a href="{{url('product/offers')}}" class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-certificate"></i> <span class="ms-1 d-none d-sm-inline">Ofertas</span></a>
                     </li>
                     <li>
                         <a href="{{ route('providers.index') }}" class="nav-link px-0 align-middle link-color">
@@ -216,6 +216,7 @@
 <script>
         const setTheme = theme => document.documentElement.className = theme;
     </script>
+    <script src="{{asset('js/theme.js')}}"></script>
 </body>
 
 <div class="container-fluid">

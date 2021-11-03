@@ -37,19 +37,21 @@
         <h5> Resultados para "{{$filter}}"</h5>
       @else
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner shadow-lg">
+          <div class="carousel-inner shadow">
               <div class="carousel-item active " data-bs-interval="5000">
-                <img src="{{ url('../storage/app/public/wallpaper_1.jpg') }}" class="d-block w-100" alt="wallpaper 1">
+                <img src="{{ url('../storage/app/public/main_slider.jpg') }}" class="d-block w-100" alt="wallpaper 1">
+                <div class="carousel-caption d-none d-md-block">
+                  <p>Slogan de SG Iluminacion</p>
+                </div>
               </div>
-              <div class="carousel-item" data-bs-interval="10000">
-                <img src="{{ url('../storage/app/public/wallpaper_2.jpg') }}" class="d-block w-100" alt="wallpaper 2">
+              @foreach($sliders as $slider)
+              <div class="carousel-item" data-bs-interval="5000">
+                <img src="{{ url('../storage/app/public/uploads/'.$slider->image) }}" class="d-block w-100" alt="wallpaper 2">
+                <div class="carousel-caption d-none d-md-block">
+                  <p>{{$slider->title}}</p>
+                </div>
               </div>
-              <div class="carousel-item" data-bs-interval="15000">
-                <img src="{{ url('../storage/app/public/wallpaper_3.jpg') }}" class="d-block w-100" alt="wallpaper 3">
-              </div>
-              <div class="carousel-item" data-bs-interval="20000">
-                <img src="{{ url('../storage/app/public/wallpaper_4.jpg') }}" class="d-block w-100" alt="wallpaper 4">
-              </div>
+              @endforeach
             </div>
             
             <button class="carousel-control-prev" style="background-color:transparent; border:none" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -61,12 +63,13 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden"></span>
             </button>
+            
           </div> 
           @if(Auth::check())
-            @if(Auth::user()->id==1)
-              <a href="{{ route('sliders.index') }}" class="btn btn-tertiary"><i class="fa fa-fw fa-edit"></i>Editar sliders</a>
-            @endif
-          @endif
+                @if(Auth::user()->id==1)
+                  <a href="{{ route('sliders.index') }}" class="btn btn-tertiary"><i class="fa fa-fw fa-edit"></i>Editar sliders</a>
+                @endif
+              @endif
         </div>
       @endif
       <!--<a href="{{ route('products.create') }}" class="btn btn-tertiary"><i class="fas fa-box"></i> Nuevo Producto</a>-->
@@ -89,7 +92,7 @@
                   @if(($product->discount)>0)
                     <span class="card-subtitle mb-2 text-muted" style="text-decoration: line-through">${{ $product->normal_price}} MXN</span> | <span class="text-break">${{ $product->final_price }} MXN</span>
                   @else
-                  <span class="card-subtitle mb-2 text-muted" style="text-decoration: line-through">${{ $product->normal_price}} MXN</span>
+                  <span class="card-subtitle mb-2 text-muted">${{ $product->normal_price}} MXN</span>
                   @endif
                 </a>
               </div>

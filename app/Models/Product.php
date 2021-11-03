@@ -38,7 +38,9 @@ class Product extends Model
 		'description' => 'required',
 		'specs' => 'required',
 		'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-		'price' => 'required',
+		'normal_price' => 'required',
+		'discount' => 'required',
+		'final_price' => 'required',
 		'stock' => 'required',
 		'max_per_order' => 'required',
 		'materials' => 'required',
@@ -54,7 +56,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['code','name','key_words','description','specs','image','price','stock','max_per_order','materials','maker','provider_id','category_id'];
+    protected $fillable = ['code','name','key_words','description','specs','image','normal_price','discount','final_price','stock','max_per_order','materials','maker','provider_id','category_id'];
 
 
     /**

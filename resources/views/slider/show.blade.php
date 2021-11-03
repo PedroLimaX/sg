@@ -1,13 +1,13 @@
 @extends('layouts.app')
     @section('content')
         <section class="content container-fluid">
-            <a class="btn btn-secondary btn-lg" href="{{ route('providers.index') }}">
+            <a class="btn btn-secondary btn-lg" href="{{ route('sliders.index') }}">
                 <i class="fas fa-chevron-circle-left"></i></a>
             <div class="container">
-                <form action="{{ url('/provider/'.$provider->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('/slider/'.$slider->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PATCH') }}
-                    <h1 class="text-break">{{ $provider->name }}</h1>
+                    
                     @if(count($errors)>0)
                         <div class="alert alert-danger" roler="alert">
                             <ul>
@@ -18,14 +18,14 @@
                         </div>
                     @endif
                     <div class="row">
-                        <div class="col-sm-4">
-                            @if(isset($provider->image))
+                        <div class="col-sm-6">
+                            @if(isset($slider->image))
                                 <div class="gallery-main">
                                     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
                                     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                                     <figure>
-                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$provider->image)}}" width="500" alt="{{$provider->image}}">
-                                        <figcaption>{{$provider->name}} <small>{{$provider->image}}</small></figcaption>
+                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$slider->image)}}" width="1000" alt="{{$slider->image}}">
+                                        <figcaption>{{$slider->title}} <small>{{$slider->image}}</small></figcaption>
                                     </figure>
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none;">
@@ -42,46 +42,24 @@
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <b><p class="text-break">{{ $provider->description}}</p></b>
+                                <h1 class="text-break">{{ $slider->title }}</h1>
                             </div>
-                            <br>
-                            <label for="location">Ubicacion</label>
-                            <br>
-                            <div class="form-floating">
-                                <p class="text-break">{{ $provider->location}}</p>
-                            </div>
-                            <br>
-                            <h5 for="email">Contactos</h5>
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="email">Correo</label>
-                                    <p class="text-break">{{ $provider->email }}</p>
-                                </div>  
-                                <div class="col">
-                                    <label for="telephone">Telefono</label>
-                                    <p class="text-break">{{ $provider->telephone }}</p>
-                                </div>
-                            </div>
+                            
                             <br>
                         </div>
                     </div>
                     <br>
                     <div class="col-md-3 offset-md-8">
                         @if(Auth::check())
-                            @if((Auth::user()->rol_id==1)||($provider->id==Auth::user()->provider_id))
-                                <a href="{{ route('providers.edit',$provider->id) }}" class="btn btn-tertiary btn-lg">
+                            @if(Auth::user()->rol_id==1)
+                                <a href="{{ route('sliders.edit',$slider->id) }}" class="btn btn-tertiary btn-lg">
                                     <i class="fa fa-fw fa-edit"></i></a>
-                            @endif
-                            @if($provider->id==Auth::user()->provider_id)
-                                <a class="btn btn-primary btn-lg" href="{{url('product/import-form')}}">
-                                    <i class="fas fa-table"></i></a>
                             @endif
                         @endif
                     </div>
                     <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion
-                        {{ \Carbon\Carbon::parse($provider->updated_at)->format('d/m/Y')}}
-                        a las {{ \Carbon\Carbon::parse($provider->updated_at)->format('H:i:s')}} hrs</i>
+                        {{ \Carbon\Carbon::parse($slider->updated_at)->format('d/m/Y')}}
+                        a las {{ \Carbon\Carbon::parse($slider->updated_at)->format('H:i:s')}} hrs</i>
                 </form>
             </div>
         </section>

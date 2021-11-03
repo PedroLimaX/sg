@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Slider;
 use App\Models\Provider;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -40,7 +41,15 @@ class ProductController extends Controller
         else{
             $products = Product::paginate(12);
         }
-        return view('product.index', compact('products','category','filter'))
+        $sliders=Slider::paginate();
+        return view('product.index', compact('products','category','filter', 'sliders'))
+            ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
+    }
+
+
+    public function offers(){
+        $products = Product::where('discount', '>', 0)->paginate(16);
+        return view('product.offers', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
 
@@ -71,7 +80,7 @@ class ProductController extends Controller
         
         if ($image = $request->file('image')) {
             $destinationPath = "../storage/app/public/uploads/";
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = "product_".$request($id).date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }
@@ -183,4 +192,6 @@ class ProductController extends Controller
         return redirect()->route('providers.index')
             ->with('success', 'Inventario Actualizado Correctamente');
     }
+
+    
 }

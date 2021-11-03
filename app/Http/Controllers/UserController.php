@@ -55,7 +55,7 @@ class UserController extends Controller
         
         if ($image = $request->file('image')) {
             $destinationPath = "../storage/app/public/uploads/";
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = "user_".$request['id'].'_'.$request['rol_id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }
@@ -109,7 +109,7 @@ class UserController extends Controller
   
         if ($image = $request->file('image')) {
             $destinationPath = "../storage/app/public/uploads/";
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = "user_".$user['id'].'_'.$user['rol_id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }else{
