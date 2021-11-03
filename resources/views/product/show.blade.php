@@ -6,7 +6,9 @@
     <div class="container">
     @csrf
     {{ method_field('PATCH') }}
-        
+    @if(($product->discount)>0)
+        <h4 class=""><span class="badge badge-pill badge-success">-{{$product->discount}}%</span></h4>
+    @endif
     <h1 class="text-break">{{ $product->name }}</h1>
 
     @if(count($errors)>0)
@@ -89,6 +91,7 @@
                 }
                 popup.init()
             </script>
+            
         </div>
         <div class="col">
                 <div class="form-floating">
@@ -113,8 +116,12 @@
 
                     <div class="col">
                         <label for="price">Precio</label>
-                        <h3 class="text-break">${{ $product->price }} MXN</h3>
-                    
+                        @if(($product->discount)>0)
+                            <p class="text-break" style="text-decoration: line-through">${{ $product->normal_price }} MXN</p>
+                            <h3 class="text-break">${{ $product->final_price }} MXN</h3>
+                        @else
+                            <h3 class="text-break">${{ $product->normal_price }} MXN</h3>
+                        @endif
                     </div>
                 </div>
                 <br>
@@ -156,6 +163,7 @@
             </div>
         </div>
     </form>
+    
     @if(Auth::check())
         @if((Auth::user()->rol_id==1)||(Auth::user()->rol_id==2))
         <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion

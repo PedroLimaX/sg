@@ -30,9 +30,8 @@ class ProductController extends Controller
         $category=$request->get('category');
         if($filter){
             $products = Product::where('name','like',"%$filter%")
-            ->orWhere('name','like',"%$filter%")
+            ->orWhere('key_words','like',"%$filter%")
             ->orWhere('description','like',"%$filter%")
-            ->orWhere('specs','like',"%$filter%")
             ->orWhere('maker','like',"%$filter%")->paginate(12);
         }
         else if($category){
@@ -110,7 +109,7 @@ class ProductController extends Controller
             'code' => $product['id'].$product['provider_id'].Auth::user()->id.$request->quant_product,
             'product_id'=> $product['id'],
             'quant_product'=>$request->quant_product,
-            'subtotal'=>($product['price']*$request->quant_product),
+            'subtotal'=>($product['normal_price']*$request->quant_product),
             'provider_id'=>$product['provider_id'],
             'user_id'=>Auth::user()->id,
             'cart_status_id'=>1

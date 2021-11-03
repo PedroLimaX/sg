@@ -62,6 +62,11 @@
               <span class="visually-hidden"></span>
             </button>
           </div> 
+          @if(Auth::check())
+            @if(Auth::user()->id==1)
+              <a href="{{ route('sliders.index') }}" class="btn btn-tertiary"><i class="fa fa-fw fa-edit"></i>Editar sliders</a>
+            @endif
+          @endif
         </div>
       @endif
       <!--<a href="{{ route('products.create') }}" class="btn btn-tertiary"><i class="fas fa-box"></i> Nuevo Producto</a>-->
@@ -71,6 +76,9 @@
           <div class="col" style="margin-top:20px">
             <div class="card h-100 text-center">
               <a href="{{ route('products.show',$product->id) }}" class="card-link">
+              @if(($product->discount)>0)
+                <h4 class="text-right"><span class="badge badge-pill badge-success">-{{$product->discount}}%</span></h4>
+              @endif
                 <img class="rounded mx-auto d-block" src="../storage/app/public/uploads/{{$product->image}}" width="60%" style="margin:5%" alt="Imagen no disponible">
               </a>
               <div class="card-body">
@@ -78,7 +86,11 @@
                   <h5 class="card-title">{{ $product->name}}</h5>
                   <p class="card-text"> Stock @if (($product->stock)>0) Disponible @else Agotado @endif</p>
                   <p class="card-text">{{ $product->maker}}</p>
-                  <h6 class="card-subtitle mb-2 text-muted">${{ $product->price}} MXN</h6>
+                  @if(($product->discount)>0)
+                    <span class="card-subtitle mb-2 text-muted" style="text-decoration: line-through">${{ $product->normal_price}} MXN</span> | <span class="text-break">${{ $product->final_price }} MXN</span>
+                  @else
+                  <span class="card-subtitle mb-2 text-muted" style="text-decoration: line-through">${{ $product->normal_price}} MXN</span>
+                  @endif
                 </a>
               </div>
               <!--

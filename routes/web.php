@@ -28,6 +28,7 @@ Route::resource('users', App\Http\Controllers\UserController::class);
 Route::resource('carts', App\Http\Controllers\CartController::class);
 Route::resource('orders', App\Http\Controllers\OrderController::class);
 Route::resource('rols', App\Http\Controllers\RolController::class);
+Route::resource('sliders', App\Http\Controllers\SliderController::class);
 
 Route::get('/product/import-form',[ProductController::class,'importForm']);
 Route::post('/product/import',[ProductController::class,'import'])->name('product.import');
