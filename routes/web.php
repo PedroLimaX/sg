@@ -19,6 +19,14 @@ Route::get('/', function () {
     return view('product/index');
 });
 
+Route::get('/policy', function () {
+    return view('policy');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
 Auth::routes(['reset'=>false]);
 
 Route::resource('products', App\Http\Controllers\ProductController::class);

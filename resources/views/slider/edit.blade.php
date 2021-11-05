@@ -1,7 +1,7 @@
 @extends('layouts.app')
     @section('content')
         <section class="content container-fluid">
-            <a class="btn btn-secondary" href="{{ url('sliders/'.$slider->id.'/') }}">
+            <a class="btn btn-secondary" href="{{ url('sliders/') }}">
                 <i class="fas fa-chevron-circle-left"></i></a>
             <div class="col-md-12">
                 @includeif('partials.errors')

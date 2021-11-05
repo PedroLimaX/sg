@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-  @if(Session::has('mensaje'))
+  @if(Session::has('success'))
     <div class="alert alert-success" roler="alert">
-    {{ Session::get('mensaje') }}
+    {{ Session::get('success') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -14,28 +14,30 @@
   <br><br>
 <a href="{{ route('sliders.create') }}" class="btn btn-tertiary">
     <i class="fas fa-images"></i> Nuevo Slider</a>
-<div class="md-1">
-  <div class="list-group">
+<div class="md-2">
+  <div class="row row-cols-1 row-cols-md-2 g-2">
     @foreach( $sliders as $slider)
-      <a href="{{ route('sliders.show',$slider->id) }}" class="list-group-item list-group-item-action flex-column align-items-start" style="margin-top:20px">
-        <div class="row d-flex w-100 justify-content-between">
-          <div class="col-sm-6">
-            <img class="mb-1 rounded shadow img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$slider->image)}}" alt="{{ $slider->image}}">
+    <div class="col" style="margin-top:20px">
+      <div class="card text-white shadow">
+        <img src="{{URL::asset('../storage/app/public/uploads/'.$slider->image)}}" class="card-img" alt="...">
+        <div class="card-img-overlay mx-auto">
+          <div class="carousel-caption d-none d-md-block" style="padding:10px">
+            <p class="card-text text-white"> {{$slider->title}}</p>
+            <small class="card-text text-muted">Ultima modificacion
+            {{ \Carbon\Carbon::parse($slider->updated_at)->format('d/m/Y')}}
+            a las {{ \Carbon\Carbon::parse($slider->updated_at)->format('H:i:s')}} hrs</small>
+              <form action="{{ route('sliders.destroy',$slider->id) }}" method="POST">
+              @csrf
+              @method('DELETE')
+                <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i></button>
+                <a href="{{ route('sliders.edit',$slider->id) }}" class="btn btn-primary">
+                  <i class="fa fa-fw fa-edit"></i></a>
+              </form>
           </div>
-          <div class="col">
-            <b><h1 class="mb-1"> {{$slider->title}}</h1></b>
-          </div>
-          <form action="{{ route('sliders.destroy',$slider->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-              <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i></button>
-            </form>
+          
         </div>
-        <hr class="my-4">
-        <small><i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion
-          {{ \Carbon\Carbon::parse($slider->updated_at)->format('d/m/Y')}}
-          a las {{ \Carbon\Carbon::parse($slider->updated_at)->format('H:i:s')}} hrs</i></small>
-      </a>
+      </div>
+      </div>
     @endforeach
   </div>
 </div>

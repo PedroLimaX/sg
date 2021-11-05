@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
     
-    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/diseno.css') }}" rel="stylesheet">
     
 </head>
 <body>
@@ -191,6 +191,14 @@
                     <li>
                         <a href="http://wa.me/+522462380354" target="_blank"class="nav-link px-0 align-middle link-color">
                         <i class="fas fa-hand-holding-usd"></i></i> <span class="ms-1 d-none d-sm-inline">Cotizaciones</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/policy')}}" class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-reply"></i> <span class="ms-1 d-none d-sm-inline">Politica de devoluciones</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/about')}}" class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-info-circle"></i> <span class="ms-1 d-none d-sm-inline">Acerca de nosotros</span></a>
                     </li>
 
                     <li class="rounded mx-auto d-block">

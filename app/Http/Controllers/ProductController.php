@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\ImageProduct;
 use App\Models\Provider;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -52,11 +53,6 @@ class ProductController extends Controller
         return view('product.offers', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
-
-    public function gallery($id){
-
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -103,7 +99,8 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        return view('product.show', compact('product'));
+        $imageproducts = ImageProduct::where('product_id', $id)->get();
+        return view('product.show', compact('product', 'imageproducts'));
     }
 
     public function addtocart(Request $request, $id)

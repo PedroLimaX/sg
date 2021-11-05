@@ -25,6 +25,7 @@ class ImageProduct extends Model
 		'title' => 'required',
 		'description' => 'required',
 		'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    'product_id'=>'required'
     ];
 
     protected $perPage = 20;
@@ -34,15 +35,15 @@ class ImageProduct extends Model
      *
      * @var array
      */
-    protected $fillable = ['title','description','image'];
+    protected $fillable = ['title','description','image','product_id'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function products()
+    public function product()
     {
-        return $this->hasMany('App\Models\Product', 'product_id', 'id');
+        return $this->hasOne('App\Models\Product', 'id', 'product_id');
     }
     
 

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ImageProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ImageProductController
@@ -16,10 +20,9 @@ class ImageProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $imageproducts = ImageProduct::where('product_id', $id)->paginate();
-
+        $imageproducts = ImageProduct::paginate();
         return view('imageproduct.index', compact('imageproducts'))
             ->with('i', (request()->input('page', 1) - 1) * $imageproducts->perPage());
     }
@@ -32,7 +35,8 @@ class ImageProductController extends Controller
     public function create()
     {
         $imageproduct= new ImageProduct();
-        return view('imageproduct.create', compact('imageproduct'));
+        $products= Product::pluck('code', 'id');
+        return view('imageproduct.create', compact('imageproduct','products'));
     }
 
     /**
@@ -48,15 +52,19 @@ class ImageProductController extends Controller
         
         if ($image = $request->file('image')) {
             $destinationPath = "../storage/app/public/uploads/";
-            $profileImage = "imageproduct_".$request['id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = 'imageproduct_'.date('YmdHis') . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }
 
         ImageProduct::create($input);
+        $product=DB::table('products')
+            ->where('id', $input['product_id'])
+            ->where('image', 'like', 'sg_default.png')
+            ->update(['image' => $input['image']]);
 
         return redirect()->route('imageproducts.index')
-            ->with('success', 'Proveedor creado correctamente');
+            ->with('success', 'Imagen creado correctamente');
     }
 
     /**
@@ -81,8 +89,8 @@ class ImageProductController extends Controller
     public function edit($id)
     {
         $imageproduct= ImageProduct::find($id);
-
-        return view('imageproduct.edit', compact('imageproduct'));
+        $products= Product::pluck('code', 'id');
+        return view('imageproduct.edit', compact('imageproduct','products'));
     }
 
     /**
@@ -122,7 +130,7 @@ class ImageProductController extends Controller
     {
         $imageproduct = ImageProduct::find($id)->delete();
 
-        return redirect()->route('pmageproducts.index')
+        return redirect()->route('imageproducts.index')
             ->with('success', 'Proveedor eliminado correctamente');
     }
 }

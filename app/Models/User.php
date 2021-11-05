@@ -15,6 +15,7 @@ class User extends Authenticatable
     static $rules = [
 		'name' => 'required',
 		'email' => 'required',
+        'password' => ['required', 'string', 'min:8'],
 		'rol_id' => 'required',
 		'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 		'address' => '',
@@ -31,6 +32,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'password',
         'rol_id',
         'image',
         'address',

@@ -41,14 +41,14 @@
               <div class="carousel-item active " data-bs-interval="5000">
                 <img src="{{ url('../storage/app/public/main_slider.jpg') }}" class="d-block w-100" alt="wallpaper 1">
                 <div class="carousel-caption d-none d-md-block">
-                  <p>Slogan de SG Iluminacion</p>
+                  <p class="text-white">Slogan de SG Iluminacion</p>
                 </div>
               </div>
               @foreach($sliders as $slider)
               <div class="carousel-item" data-bs-interval="5000">
                 <img src="{{ url('../storage/app/public/uploads/'.$slider->image) }}" class="d-block w-100" alt="wallpaper 2">
                 <div class="carousel-caption d-none d-md-block">
-                  <p>{{$slider->title}}</p>
+                  <p class="text-white">{{$slider->title}}</p>
                 </div>
               </div>
               @endforeach
@@ -82,7 +82,9 @@
               @if(($product->discount)>0)
                 <h4 class="text-right"><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
               @endif
-                <img class="rounded mx-auto d-block" src="../storage/app/public/uploads/{{$product->image}}" width="60%" style="margin:5%" alt="Imagen no disponible">
+              
+                  <img class="img-fluid mx-auto rounded shadow" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="80%" alt="{{$product->image}}">
+                
               </a>
               <div class="card-body">
                 <a href="{{ route('products.show',$product->id) }}" class="card-link">

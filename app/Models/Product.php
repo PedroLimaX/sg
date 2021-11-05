@@ -74,6 +74,9 @@ class Product extends Model
     {
         return $this->hasOne('App\Models\provider', 'id', 'provider_id');
     }
-    
 
+    public function imageproduct()
+    {
+        return $this->hasMany('App\Models\ImageProduct', 'product_id', 'id');
+    }
 }

@@ -12,6 +12,10 @@
   --text2-color: #222831;
   --thead-color: #CCCCCC;
   --margin-color:rgba(106, 0, 128,0.5);
+  --alert-info-color:#D1ECF1;
+  --alert2-info-color:#0C5460;
+  --alert-success-color:#D1E7DD;
+  --alert2-success-color:#115032;
 }
 
 [data-theme="dark"] {
@@ -27,7 +31,11 @@
     --text-color: #E0E0E0;
     --text2-color: #EEEEEE;
     --thead-color: #111620;
-  --margin-color:rgba(149, 255, 127,0.5);
+    --margin-color:rgba(149, 255, 127,0.5);
+    --alert-info-color:#0C5460;
+    --alert2-info-color:#D1ECF1;
+    --alert-success-color:#115032;
+    --alert2-success-color:#D1E7DD;
 }
 
 /*Simple css to style it like a toggle switch*/
@@ -141,8 +149,8 @@ p{
 }
 
 .carousel-caption{
-  background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 75%);
-  border-radius: 2rem;
+  background: radial-gradient(circle, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.75) 100%);
+  border-radius: 1rem;
 }
 
 .carousel-control-prev{
@@ -151,7 +159,16 @@ p{
 .carousel-control-next{
     background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%);
 }
-
+.alert-info{
+  background-color:var(--alert-info-color);
+  border-color: transparent;
+  color: var(--alert2-info-color);
+}
+.alert-success{
+  background-color:var(--alert-success-color);
+  border-color: transparent;
+  color: var(--alert2-success-color);
+}
 .form-control{
     color: var(--tertiary-color);
     background-color: var(--light3-color);
