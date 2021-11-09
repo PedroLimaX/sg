@@ -9,7 +9,6 @@
           </button>
         </div>
       @endif
-
       <br>
       @if(isset($category))
         @switch($category)
@@ -35,45 +34,9 @@
         @endswitch
       @elseif(isset($filter))
         <h5> Resultados para "{{$filter}}"</h5>
-      @else
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner shadow">
-              <div class="carousel-item active " data-bs-interval="5000">
-                <img src="{{ url('../storage/app/public/main_slider.jpg') }}" class="d-block w-100" alt="wallpaper 1">
-                <div class="carousel-caption d-none d-md-block">
-                  <p class="text-white">Slogan de SG Iluminacion</p>
-                </div>
-              </div>
-              @foreach($sliders as $slider)
-              <div class="carousel-item" data-bs-interval="5000">
-                <img src="{{ url('../storage/app/public/uploads/'.$slider->image) }}" class="d-block w-100" alt="wallpaper 2">
-                <div class="carousel-caption d-none d-md-block">
-                  <p class="text-white">{{$slider->title}}</p>
-                </div>
-              </div>
-              @endforeach
-            </div>
-            
-            <button class="carousel-control-prev" style="background-color:transparent; border:none" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
-              <span class="visually-hidden"></span>
-            </button>
-            
-            <button class="carousel-control-next" style="background-color:transparent; border:none" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden"></span>
-            </button>
-            
-          </div> 
-          @if(Auth::check())
-                @if(Auth::user()->id==1)
-                  <a href="{{ route('sliders.index') }}" class="btn btn-tertiary"><i class="fa fa-fw fa-edit"></i>Editar sliders</a>
-                @endif
-              @endif
-        </div>
+        <br><br>
       @endif
       <!--<a href="{{ route('products.create') }}" class="btn btn-tertiary"><i class="fas fa-box"></i> Nuevo Producto</a>-->
-      <br><br>
       <div class="row row-cols-1 row-cols-md-4 g-4">
         @foreach( $products as $product)
           <div class="col" style="margin-top:20px">

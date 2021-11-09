@@ -62,8 +62,8 @@
                             @endif
                     </div>
                     <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion
-                        {{ \Carbon\Carbon::parse($cart->updated_at)->format('d/m/Y')}}
-                        a las {{ \Carbon\Carbon::parse($cart->updated_at)->format('H:i:s')}} hrs</i>
+                        {{ \Carbon\Carbon::parse($cart->updated_at,'America/Mexico_City')->format('d/m/Y')}}
+                        a las {{ \Carbon\Carbon::parse($cart->updated_at,'America/Mexico_City')->format('H:i:s')}} hrs</i>
                 </form>
             </div>
         </section>

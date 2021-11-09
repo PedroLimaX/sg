@@ -24,7 +24,7 @@ class ImageProduct extends Model
     static $rules = [
 		'title' => 'required',
 		'description' => 'required',
-		'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+		'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
     'product_id'=>'required'
     ];
 

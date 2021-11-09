@@ -23,7 +23,7 @@
             <b>{{ $order->user->name}}</b> |
             <i class=" text-muted fas fa-map-marker-alt"></i>
               {{$order->user->address}}</p>
-          <small class="text-muted">Pedido realizado el {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y')}}</small>
+          <small class="text-muted">Pedido realizado el {{ \Carbon\Carbon::parse($order->created_at,'America/Mexico_City')->format('d/m/Y')}}</small>
         </div>
         @foreach( $carts as $cart)
           @if($cart->code==$order->code)
@@ -59,7 +59,7 @@
                     <b>{{ $order->user->name}}</b> |
                     <i class=" text-muted fas fa-map-marker-alt"></i>
                       {{$order->user->address}}</p>
-                    <small class="text-muted">Pedido realizado el {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y')}}</small>
+                    <small class="text-muted">Pedido realizado el {{ \Carbon\Carbon::parse($order->created_at,'America/Mexico_City')->format('d/m/Y')}}</small>
                   </div>
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">

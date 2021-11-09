@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Slider;
+use App\Models\Tip;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('/home');
+        $sliders=Slider::paginate();
+        $tips=Tip::paginate();
+        return view('/home', compact('sliders','tips'))
+            ->with('i', (request()->input('page', 1) - 1) * $sliders->perPage());
     }
 }

@@ -9,13 +9,14 @@
           </button>
         </div>
       @endif
-      <a href="{{ route('imageproducts.create') }}" class="btn btn-tertiary"><i class="fas fa-box"></i> Nuevo imageproducto</a>
+      <a href="{{ route('imageproducts.create') }}" class="btn btn-tertiary"><i class="fas fa-image"></i> Nuevo imageproducto</a>
       <br><br>
       <div class="gallery-main">
         <div class="row row-cols-1 row-cols-md-4 g-5">
           <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
           <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
           @foreach( $imageproducts as $imageproduct)
+          @if($imageproduct->product->provider_id==Auth::user()->provider_id)
             <div class="col" style="margin-top:20px">
               <div class="card h-100 text-center">
                 <figure>
@@ -36,6 +37,7 @@
                 </div>
               </div>
             </div>
+            @endif
           @endforeach
         </div>
       </div>

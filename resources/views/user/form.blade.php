@@ -29,17 +29,18 @@
         <br>
         <div class="row">
             <div class="col">
-                {{ Form::label('Rol') }}
                 {{ Form::select('rol_id', $rols, $user->rol_id, ['hidden','class' => 'form-control' . ($errors->has('rol_id') ? ' is-invalid' : ''), 'placeholder' => 'Rol']) }}
                 {!! $errors->first('rol_id', '<p class="invalid-feedback">:message</p>') !!}
                 <p class="text-break">{{$user->rol->name}}</p>
             </div>
+            @if(isset($user->provider_id))
             <div class="col">
                 {{ Form::label('Proveedor') }}
                 {{ Form::select('provider_id', $providers, $user->provider_id, ['hidden','class' => 'form-control' . ($errors->has('provider_id') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor']) }}
                 {!! $errors->first('provider_id', '<p class="invalid-feedback">:message</p>') !!}  
                 <p class="text-break">{{$user->provider->name}}</p>
             </div>
+            @endif
         </div>
         <br>    
     </div>

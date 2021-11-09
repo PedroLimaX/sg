@@ -16,7 +16,7 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('product/index');
+    return view('/home');
 });
 
 Route::get('/policy', function () {
@@ -38,6 +38,7 @@ Route::resource('orders', App\Http\Controllers\OrderController::class);
 Route::resource('rols', App\Http\Controllers\RolController::class);
 Route::resource('sliders', App\Http\Controllers\SliderController::class);
 Route::resource('imageproducts', App\Http\Controllers\ImageProductController::class);
+Route::resource('tips', App\Http\Controllers\TipController::class);
 
 Route::get('/product/import-form',[ProductController::class,'importForm']);
 Route::post('/product/import',[ProductController::class,'import'])->name('product.import');
@@ -50,5 +51,5 @@ Route::get('/product/offers',[ProductController::class,'offers']);
 
 Route::post('/order/doOrder',[OrderController::class,'doOrder'])->name('order.doOrder');
 
-Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
-Route::get('/', [ProductController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');

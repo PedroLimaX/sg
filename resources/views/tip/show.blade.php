@@ -1,10 +1,10 @@
 @extends('layouts.app')
     @section('content')
         <section class="content container-fluid">
-            <a class="btn btn-secondary btn-lg" href="{{ route('sliders.index') }}">
+            <a class="btn btn-secondary btn-lg" href="{{ route('tips.index') }}">
                 <i class="fas fa-chevron-circle-left"></i></a>
             <div class="container">
-                <form action="{{ url('/slider/'.$slider->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('/tip/'.$tip->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PATCH') }}
                     
@@ -17,15 +17,14 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="row">
-                        <div class="col-sm-6">
-                            @if(isset($slider->image))
+                        <div class="col">
+                            @if(isset($tip->image))
                                 <div class="gallery-main">
                                     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
                                     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                                     <figure>
-                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$slider->image)}}" width="1000" alt="{{$slider->image}}">
-                                        <figcaption>{{$slider->title}} <small>{{$slider->image}}</small></figcaption>
+                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$tip->image)}}" width="1000" alt="{{$tip->image}}">
+                                        <figcaption>{{$tip->title}} <small>{{$tip->image}}</small></figcaption>
                                     </figure>
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none;">
@@ -42,24 +41,30 @@
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <h1 class="text-break">{{ $slider->title }}</h1>
+                                <h1 class="text-break">{{ $tip->title }}</h1>
                             </div>
-                            
                             <br>
+                            <div class="form-floating">
+                                <p class="text-break">{{ $tip->content }}</p>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                            Fuente: <a href="{{$tip->source}}" target="_blank" class="link-color">{{ $tip->source }}</a>
+                            </div>
                         </div>
-                    </div>
+                
                     <br>
                     <div class="col-md-3 offset-md-8">
                         @if(Auth::check())
                             @if(Auth::user()->rol_id==1)
-                                <a href="{{ route('sliders.edit',$slider->id) }}" class="btn btn-tertiary btn-lg">
+                                <a href="{{ route('tips.edit',$tip->id) }}" class="btn btn-tertiary btn-lg">
                                     <i class="fa fa-fw fa-edit"></i></a>
                             @endif
                         @endif
                     </div>
                     <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion
-                        {{ \Carbon\Carbon::parse($slider->updated_at,'America/Mexico_City')->format('d/m/Y')}}
-                        a las {{ \Carbon\Carbon::parse($slider->updated_at,'America/Mexico_City')->format('H:i:s')}} hrs</i>
+                        {{ \Carbon\Carbon::parse($tip->updated_at,'America/Mexico_City')->format('d/m/Y')}}
+                        a las {{ \Carbon\Carbon::parse($tip->updated_at,'America/Mexico_City')->format('H:i:s')}} hrs</i>
                 </form>
             </div>
         </section>

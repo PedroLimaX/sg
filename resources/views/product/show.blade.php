@@ -54,7 +54,7 @@
             @if(Auth::check())
                 @if(Auth::user()->provider_id==$product->provider_id)
                     <a href="{{ route('imageproducts.index') }}" class="btn btn-tertiary">
-                        <i class="fas fa-user-plus"></i> Editar galeria</a>
+                    <i class="fas fa-images"></i> Editar galeria</a>
                     <br><br>
                 @endif
             @endif
@@ -133,8 +133,8 @@
     @if(Auth::check())
         @if((Auth::user()->rol_id==1)||(Auth::user()->rol_id==2))
         <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion
-            {{ \Carbon\Carbon::parse($product->updated_at)->format('d/m/Y')}}
-            a las {{ \Carbon\Carbon::parse($product->updated_at)->format('H:i:s')}} hrs</i>
+            {{ \Carbon\Carbon::parse($product->updated_at,'America/Mexico_City')->format('d/m/Y')}}
+            a las {{ \Carbon\Carbon::parse($product->updated_at,'America/Mexico_City')->format('H:i:s')}} hrs</i>
         @endif
     @endif
 </div>

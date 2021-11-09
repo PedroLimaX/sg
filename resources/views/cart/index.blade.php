@@ -2,10 +2,14 @@
   @section('content')
       <div class="container-fluid">
       @if ($message = Session::get('success'))
-              <div class="alert alert-success">
-                <p>{{ $message }}</p>
-              </div>
-              @endif
+      <div class="alert alert-success alert-dismissible align-items-center fade show" roler="alert">
+        <i class="fas fa-check-circle"></i>
+            {{$message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left:10px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+      @endif
         <div class="row">
           <div class="col-sm-12">
             <div class="card">
@@ -22,8 +26,8 @@
                     <thead class="">
                       <tr>
                         <th>No</th>   
-                        <th>Imagen</th>   
-                        <th>Producto</th>
+                        <th>Producto</th>   
+                        <th> </th>
                         <th>Precio unitario</th>
                         <th>Cantidad</th>
                         <th>Subtotal</th>
@@ -61,7 +65,9 @@
                     </div>
                     <div class="col-md-3 offset-md-9">
                       <div class="input-group mb-3">
-                          <a class="form-control btn btn-primary" href="{{ route('orders.create')}}">Realizar Pedido</a>
+                          @if($accumulated>0)
+                            <a class="form-control btn btn-primary" href="{{ route('orders.create')}}">Realizar Pedido</a>
+                          @endif
                       </div>
                     </div>
                 </div>

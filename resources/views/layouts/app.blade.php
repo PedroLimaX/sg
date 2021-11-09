@@ -134,6 +134,10 @@
             <div class="d-flex flex-column align-items-center align-items-sm-start px-2 pt-2 ">
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start" id="menu">
                     <li>
+                        <a href="{{url('/home')}}" class="nav-link px-0 align-middle link-color">
+                        <i class="fas fa-home"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span></a>
+                    </li>
+                    <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle link-color">
                         <i class="fas fa-box"></i><span class="ms-1 d-none d-sm-inline"> {{ __('Productos') }}</span></a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
@@ -144,31 +148,36 @@
                             <li class="w-100">
                                 <form action="{{ route('products.index') }}" class="d-grid gap-2">
                                     <input name="category" value="1" type="hidden" placeholder="" aria-label="search">
-                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-home"></i> <span class="d-none d-sm-inline"> {{ __('Iluminación Interior') }}</span></button>
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-lightbulb"></i>
+                                    <span class="d-none d-sm-inline"> {{ __('Iluminación Interior') }}</span></button>
                                 </form>
                             </li>
                             <li class="w-100">
                                 <form action="{{ route('products.index') }}" class="d-grid gap-2">
                                     <input name="category" value="2" type="hidden" placeholder="" aria-label="search">
-                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-bolt"></i> <span class="d-none d-sm-inline"> {{ __('Iluminación Exterior') }}</span></button>
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-bolt"></i>
+                                    <span class="d-none d-sm-inline"> {{ __('Iluminación Exterior') }}</span></button>
                                 </form>
                             </li>
                             <li class="w-100">
                                 <form action="{{ route('products.index') }}" class="d-grid gap-2">
                                     <input name="category" value="3" type="hidden" placeholder="" aria-label="search">
-                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-car"></i> <span class="d-none d-sm-inline"> {{ __('Iluminación Automotriz') }}</span></button>
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-car"></i>
+                                    <span class="d-none d-sm-inline"> {{ __('Iluminación Automotriz') }}</span></button>
                                 </form>
                             </li>
                             <li class="w-100">
                                 <form action="{{ route('products.index') }}" class="d-grid gap-2">
                                     <input name="category" value="4" type="hidden" placeholder="" aria-label="search">
-                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-industry"></i> <span class="d-none d-sm-inline"> {{ __('Iluminación Industrial') }}</span></button>
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-industry"></i>
+                                    <span class="d-none d-sm-inline"> {{ __('Iluminación Industrial') }}</span></button>
                                 </form>
                             </li>
                             <li class="w-100">
                                 <form class="d-grid gap-2">
                                     <input name="category" value="5" type="hidden" placeholder="" aria-label="search">
-                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-cogs"></i> <span class="d-none d-sm-inline"> {{ __('Repuestos y accesorios') }}</span></button>
+                                    <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-cogs"></i>
+                                    <span class="d-none d-sm-inline"> {{ __('Repuestos y accesorios') }}</span></button>
                                 </form>
                             </li>
                             

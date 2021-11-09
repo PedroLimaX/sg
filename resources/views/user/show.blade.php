@@ -73,8 +73,7 @@
                         <br>
                         <div class="row">
                             <div class="col">
-                                <label for="Rol">Rol de usuario</label>
-                                <h5 class="text-break">{{$user->rol->name}}</h5>
+                                <p class="text-muted">{{$user->rol->name}}  desde el {{ \Carbon\Carbon::parse($user->created_at,'America/Mexico_City')->format('d/m/Y')}}</p>
                             </div>
                             <div class="col">
                                 @if(($user->rol_id)=='2')
@@ -95,8 +94,8 @@
                     @endif
                 </div>
                 <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion
-                    {{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y')}}
-                    a las {{ \Carbon\Carbon::parse($user->updated_at)->format('H:i:s')}} hrs</i>
+                    {{ \Carbon\Carbon::parse($user->updated_at,'America/Mexico_City')->format('d/m/Y')}}
+                    a las {{ \Carbon\Carbon::parse($user->updated_at,'America/Mexico_City')->format('H:i:s')}} hrs</i>
     
             </form>
         </div>
