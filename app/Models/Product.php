@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
  * Class Product
  *
  * @property $id
- * @property $code
+ * @property $sku
  * @property $name
  * @property $description
  * @property $specs
  * @property $image
  * @property $price
- * @property $stock
+ * @property $quantity
  * @property $max_per_order
  * @property $materials
  * @property $maker
@@ -32,7 +32,7 @@ class Product extends Model
 {
     
     static $rules = [
-		'code' => 'required',
+		'sku' => 'required',
 		'name' => 'required',
 		'key_words' => 'required',
 		'description' => 'required',
@@ -41,12 +41,13 @@ class Product extends Model
 		'normal_price' => 'required',
 		'discount' => 'required',
 		'final_price' => 'required',
-		'stock' => 'required',
+		'quantity' => 'required',
 		'max_per_order' => 'required',
 		'materials' => 'required',
 		'maker' => 'required',
 		'provider_id' => 'required',
 		'category_id' => 'required',
+		'imported' => '',
     ];
 
     protected $perPage = 20;
@@ -56,7 +57,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['code','name','key_words','description','specs','image','normal_price','discount','final_price','stock','max_per_order','materials','maker','provider_id','category_id'];
+    protected $fillable = ['sku','name','key_words','description','specs','image','normal_price','discount','final_price','quantity','max_per_order','materials','maker','provider_id','category_id','imported'];
 
 
     /**

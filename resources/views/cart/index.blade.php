@@ -41,10 +41,10 @@
                         <tr>
                           <td>{{ ++$i }}</td>
                           <td>
-                            <img class="img-thumbnail" src="../storage/app/public/uploads/{{$cart->product->image}}"
+                            <img class="img-rounded" src="../storage/app/public/uploads/{{$cart->product->image}}"
                              alt="{{ $cart->product->image}}" width="40px"></td>
                           <td>{{ $cart->product->name }}</td>
-                          <td>{{ $cart->product->price}}</td>
+                          <td>{{ $cart->product->final_price}}</td>
                           <td>{{ $cart->quant_product }}</td>
                           <td><b>{{ $cart->subtotal}}</b></td>
                           <td>

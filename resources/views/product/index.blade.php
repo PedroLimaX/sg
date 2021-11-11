@@ -13,30 +13,28 @@
       @if(isset($category))
         @switch($category)
           @case(1)
-          <h5>Iluminacion Interior</h5>
+          <h3>Iluminacion Interior</h3>
           @break
 
           @case(2)
-          <h5>Iluminacion Exterior</h5>
+          <h3>Iluminacion Exterior</h3>
           @break
           
           @case(3)
-          <h5>Iluminacion Automotriz</h5>
+          <h3>Iluminacion Automotriz</h3>
           @break
 
           @case(4)
-          <h5>Iluminacion Industrial</h5>
+          <h3>Iluminacion Industrial</h3>
           @break
           
           @case(5)
-          <h5>Repuestos y Accesorios</h5>
+          <h3>Repuestos y Accesorios</h3>
           @break
         @endswitch
       @elseif(isset($filter))
-        <h5> Resultados para "{{$filter}}"</h5>
-        <br><br>
+        <h3> Resultados para "<i>{{$filter}}</i>"</h3>
       @endif
-      <!--<a href="{{ route('products.create') }}" class="btn btn-tertiary"><i class="fas fa-box"></i> Nuevo Producto</a>-->
       <div class="row row-cols-1 row-cols-md-4 g-4">
         @foreach( $products as $product)
           <div class="col" style="margin-top:20px">
@@ -45,31 +43,20 @@
               @if(($product->discount)>0)
                 <h4 class="text-right"><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
               @endif
-              
-                  <img class="img-fluid mx-auto rounded shadow" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="80%" alt="{{$product->image}}">
-                
+                  <img class="img-fluid mx-auto rounded" src="{{URL::asset('../storage/app/public/uploads/imageproducts/'.$product->image)}}" width="60%" alt="{{$product->image}}">
               </a>
               <div class="card-body">
                 <a href="{{ route('products.show',$product->id) }}" class="card-link">
-                  <h5 class="card-title">{{ $product->name}}</h5>
-                  <p class="card-text"> Stock @if (($product->stock)>0) Disponible @else Agotado @endif</p>
-                  <p class="card-text">{{ $product->maker}}</p>
+                  <h6 class="card-title">{{ $product->name}}</h6>
+                  <small class="card-text text-muted">{{$product->sku}}</small>
+                  <br>
                   @if(($product->discount)>0)
-                    <span class="card-subtitle mb-2 text-muted" style="text-decoration: line-through">${{ $product->normal_price}} MXN</span> | <span class="text-break">${{ $product->final_price }} MXN</span>
+                    <small class="card-subtitle mb-2 text-muted" style="text-decoration: line-through">${{ $product->normal_price}} MXN</small> | <span class="text-break">${{ $product->final_price }} MXN</span>
                   @else
                   <span class="card-subtitle mb-2 text-muted">${{ $product->normal_price}} MXN</span>
                   @endif
                 </a>
               </div>
-              <!--
-              <div class="card-footer text-muted">
-                <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i></button>
-                </form>
-              </div>
-              --->
             </div>
           </div>
         @endforeach
@@ -78,5 +65,4 @@
         {!! $products->links() !!}
       </div>
     </div>
-    
   @endsection

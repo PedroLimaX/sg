@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Provider;
 use Illuminate\Http\Request;
 
+use File;
+
 /**
  * Class ProviderController
  * @package App\Http\Controllers
@@ -47,7 +49,7 @@ class ProviderController extends Controller
         $input=$request->all();
         
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
+            $destinationPath = "../storage/app/public/uploads/providers/";
             $profileImage = "provider_".$request['id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -99,7 +101,7 @@ class ProviderController extends Controller
         $input = $request->all();
   
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
+            $destinationPath = "../storage/app/public/uploads/providers/";
             $profileImage = "provider_".$provider['id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -120,8 +122,12 @@ class ProviderController extends Controller
      */
     public function destroy($id)
     {
-        $provider = Provider::find($id)->delete();
-
+        $provider = Provider::find($id);
+        $image_path = "../storage/app/public/uploads/providers/$provider->image";
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        $provider->delete();
         return redirect()->route('providers.index')
             ->with('success', 'Proveedor eliminado correctamente');
     }

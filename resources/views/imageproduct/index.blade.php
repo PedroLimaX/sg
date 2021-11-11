@@ -1,9 +1,9 @@
 @extends('layouts.app')
   @section('content') 
     <div class="container">
-      @if(Session::has('mensaje'))
+      @if(Session::has('success'))
         <div class="alert alert-success" roler="alert">
-          {{ Session::get('mensaje') }}
+          {{ Session::get('success') }}
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -20,11 +20,11 @@
             <div class="col" style="margin-top:20px">
               <div class="card h-100 text-center">
                 <figure>
-                  <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$imageproduct->image)}}" width="500" alt="{{$imageproduct->image}}">
+                  <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/imageproducts/'.$imageproduct->image)}}" width="500" alt="{{$imageproduct->image}}">
                   <figcaption>{{$imageproduct->title}} <small>{{$imageproduct->image}}</small></figcaption>
                 </figure>
                 <div class="card-body">
-                    <span class="card-subtitle mb-2 text-muted">{{ $imageproduct->product->code}}</span>
+                    <span class="card-subtitle mb-2 text-muted">{{ $imageproduct->product->sku}}</span>
                 </div>
                 <div class="card-footer text-muted d-flex justify-content-center">
                   <form action="{{ route('imageproducts.destroy',$imageproduct->id) }}" method="POST">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
+use File;
+
 /**
  * Class SliderController
  * @package App\Http\Controllers
@@ -48,7 +50,7 @@ class SliderController extends Controller
         $input=$request->all();
         
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads";
+            $destinationPath = "../storage/app/public/uploads/sliders/";
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -98,7 +100,7 @@ class SliderController extends Controller
         $input = $request->all();
   
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads";
+            $destinationPath = "../storage/app/public/uploads/sliders/";
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -119,7 +121,12 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        $slider = Slider::find($id)->delete();
+        $slider = Slider::find($id);
+        $image_path = "../storage/app/public/uploads/sliders/$slider->image";
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        $slider->delete();
 
         return redirect()->route('sliders.index')
             ->with('success', 'Slider eliminado correctamente');

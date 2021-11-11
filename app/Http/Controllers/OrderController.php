@@ -47,7 +47,7 @@ class OrderController extends Controller
         $codeAlphabet.= "0123456789";
         $max = strlen($codeAlphabet);
 
-        for ($i=0; $i < 3; $i++) {
+        for ($i=0; $i < 5; $i++) {
             $token .= $codeAlphabet[random_int(0, $max-1)];
         }
         $orders = DB::table('orders')->insert([
@@ -88,7 +88,7 @@ class OrderController extends Controller
         
 
         return redirect()->route('orders.index')
-            ->with('success', 'Order created successfully.');
+            ->with('success', 'Pedido realizado correctamente.');
     }
 
     /**
@@ -117,7 +117,7 @@ class OrderController extends Controller
         }
         
         return redirect()->view('carts.index')
-        ->with('success', "$token");
+        ->with('success', "Pedido realizado correctanmente");
     }
 
     /**
@@ -159,7 +159,7 @@ class OrderController extends Controller
         $order->update($input);
 
         return redirect()->route('orders.index')
-            ->with('success', 'Order updated successfully');
+            ->with('success', 'Pedido actualizado correctamente');
     }
 
     /**
@@ -171,6 +171,6 @@ class OrderController extends Controller
     {
         $order = Order::find($id)->delete();
         return redirect()->route('orders.index')
-            ->with('success', 'Order deleted successfully');
+            ->with('success', 'Pedido cancelado correctamente');
     }
 }

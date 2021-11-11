@@ -15,14 +15,18 @@
             <div class="card h-100 text-center">
               <a href="{{ route('products.show',$product->id) }}" class="card-link">
                 <h4 class="text-right"><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
-                <img class="rounded mx-auto d-block" src="{{asset('../storage/app/public/uploads/'.$product->image)}}" width="60%" style="margin:5%" alt="Imagen no disponible">
+                <img class="rounded mx-auto d-block" src="{{asset('../storage/app/public/uploads/imageproducts/'.$product->image)}}" width="60%" style="margin:5%" alt="Imagen no disponible">
               </a>
               <div class="card-body">
                 <a href="{{ route('products.show',$product->id) }}" class="card-link">
-                  <h5 class="card-title">{{ $product->name}}</h5>
-                  <p class="card-text"> Stock @if (($product->stock)>0) Disponible @else Agotado @endif</p>
-                  <p class="card-text">{{ $product->maker}}</p>
-                    <span class="card-subtitle mb-2 text-muted" style="text-decoration: line-through">${{ $product->normal_price}} MXN</span> | <span class="text-break">${{ $product->final_price }} MXN</span>
+                <h6 class="card-title">{{ $product->name}}</h6>
+                  <small class="card-text text-muted">{{$product->sku}}</small>
+                  <br>
+                  @if(($product->discount)>0)
+                    <small class="card-subtitle mb-2 text-muted" style="text-decoration: line-through">${{ $product->normal_price}} MXN</small> | <span class="text-break">${{ $product->final_price }} MXN</span>
+                  @else
+                  <span class="card-subtitle mb-2 text-muted">${{ $product->normal_price}} MXN</span>
+                  @endif
                 </a>
               </div>
             </div>

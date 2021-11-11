@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $sliders=Slider::paginate();
         $tips=Tip::paginate();
-        return view('/home', compact('sliders','tips'))
-            ->with('i', (request()->input('page', 1) - 1) * $sliders->perPage());
+        return view('home', compact('sliders','tips'))
+            ->with('i', (request()->input('page', 1) - 1) * $tips->perPage());
     }
 }

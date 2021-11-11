@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{'SG Iluminación | Tienda en línea'}}</title>
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,27 +21,19 @@
     <!-- Styles -->
     
     <link href="{{ asset('css/app.css') }}" rel ="stylesheet">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
-    
-    <link href="{{ asset('css/diseno.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('/storage/sg_icon.png') }}">
     
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-lg shadow navbar-static-top navbar-color">
             <div class="container-fluid">
-                <a class="navbar-brand link-color" href="{{ route('products.index') }}">
+                <a class="navbar-brand link-color" href="{{ route('/') }}">
                     <img src="{{ asset('/storage/sg_logo.png') }}" alt="SG logo"  width="200"  class="d-inline-block align-text-top">
                 </a>
-                
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <div class="theme-switch-wrapper">
+                <div class="theme-switch-wrapper">
                             <label class="theme-switch" for="checkbox">
                                 <input type="checkbox" id="checkbox" />
                                     <div class="slider round">
@@ -49,6 +41,13 @@
                                     <i class="fas fa-adjust"></i>
                             </label>
                     </div>
+                <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    
                     <form action="{{ route('products.index') }}" class="d-flex col-sm-5">
                         <input class="form-control me-4 search-color" name="search" value="" type="search" placeholder="Buscar" aria-label="search">
                         &nbsp<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
@@ -71,7 +70,7 @@
                             
                         @else
                         <div class="text-center">
-                        <img src="{{URL::asset('../storage/app/public/uploads/'.Auth::user()->image)}}" alt=""  class="rounded-circle shadow" width="40" height="40" data-holder-rendered="true">
+                        <img src="{{URL::asset('../storage/app/public/uploads/users/'.Auth::user()->image)}}" alt=""  class="rounded-circle shadow" width="40" height="40" data-holder-rendered="true">
                         </div>
                         
                             <li class="nav-item dropdown">
@@ -94,7 +93,8 @@
                                         <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
                                     @elseif(Auth::user()->rol_id==2)
                                         <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
-                                        <a class="dropdown-item" href="{{ route('providers.show', Auth::user()->provider_id) }}">{{ __('Perfil del Proveedor') }}</a>
+                                        <a class="dropdown-item" href="{{url('product/import-form')}}">{{ __('Actualizar inventario') }}</a>
+                                        <a class="dropdown-item" href="{{route('providers.show', Auth::user()->provider_id)}}">{{ __('Perfil de Provedor') }}</a>
                                     @else
                                     <a class="dropdown-item" href="{{ route('carts.index') }}">{{ __('Mi Carrito') }}</a>
                                     <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
@@ -115,18 +115,13 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
-
-                                    
-                                    
                                 </div>
                             </li>
                         @endguest
-                        
                     </ul>
                 </div>
             </div>
         </nav>
-
 
 <div class="container-fluid">
     <div class="row align-items-start">
@@ -134,7 +129,7 @@
             <div class="d-flex flex-column align-items-center align-items-sm-start px-2 pt-2 ">
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start" id="menu">
                     <li>
-                        <a href="{{url('/home')}}" class="nav-link px-0 align-middle link-color">
+                        <a href="{{route('/')}}" class="nav-link px-0 align-middle link-color">
                         <i class="fas fa-home"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span></a>
                     </li>
                     <li>
@@ -205,21 +200,20 @@
                         <a href="{{url('/policy')}}" class="nav-link px-0 align-middle link-color">
                         <i class="fas fa-reply"></i> <span class="ms-1 d-none d-sm-inline">Politica de devoluciones</span></a>
                     </li>
-                    <li>
-                        <a href="{{url('/about')}}" class="nav-link px-0 align-middle link-color">
-                        <i class="fas fa-info-circle"></i> <span class="ms-1 d-none d-sm-inline">Acerca de nosotros</span></a>
-                    </li>
 
                     <li class="rounded mx-auto d-block">
-                        <a href="#" target="_blank"class="nav-link px-0 align-middle link-color">
+                        
                         <span class="ms-1 d-none d-sm-inline"><img src="{{ url('../storage/app/public/sg_watermark.png') }}"
-                            class="rounded mx-auto d-block" alt="..."  width="150"></span></a>
+                            class="rounded mx-auto d-block" alt="..."  width="100"></span>
                     </li>
-                    <div class="px-4">
-                        <!--<img src="http://pa1.narvii.com/7450/ee32253654850692d9c3e7a5d64ded6c2543b1f6r1-320-320_00.gif"
-                            class="rounded mx-auto d-block" alt="..."  width="150">
-                        -->                       
-                    </div>
+                    <li>
+                        <!--<a href="{{url('/')}}" class="nav-link px-0 align-middle link-color">
+                            <i class="fas"></i> <span class="ms-1 d-none d-sm-inline"><div class="px-4">
+                            <img src="http://pa1.narvii.com/7450/ee32253654850692d9c3e7a5d64ded6c2543b1f6r1-320-320_00.gif"
+                                class="rounded mx-auto d-block" alt="..."  width="120">
+                        </div></span></a>-->
+                        
+                    </li>
                 </ul>
             </div>
         </div>

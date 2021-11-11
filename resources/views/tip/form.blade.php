@@ -3,7 +3,7 @@
         <div class="row">
             
             <div class="col-sm-4">
-                <img class="rounded shadow" src="{{asset('../storage/app/public/uploads/'.$tip->image)}}" width="100%" alt="">
+                <img class="rounded shadow" src="{{asset('../storage/app/public/uploads/tips/'.$tip->image)}}" width="100%" alt="">
                 <br><br>
                 <input class="form-control btn" type="file" name="image" value="{{isset($tip->image)}}" id="image">
             </div>

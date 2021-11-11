@@ -9,7 +9,8 @@
     @if(($product->discount)>0)
         <h4 class=""><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
     @endif
-    <h1 class="text-break">{{ $product->name }}</h1>
+    <h1 class="text-break">{{ $product->name }}</h1><h4 class="text-break stock-aviable">@if (($product->quantity)>0) Disponible @endif</h4>
+                <h4 class="text-break stock-not-aviable">@if (($product->quantity)<=0) Agotado @endif</h4>
 
     @if(count($errors)>0)
         <div class="alert alert-danger" roler="alert">
@@ -27,7 +28,7 @@
             <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
             <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
             <figure>
-                <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/imageproducts/'.$product->image)}}" width="500" alt="{{$product->image}}">
                 <figcaption> <small>{{$product->name}}</small></figcaption>
             </figure>
         </div>
@@ -36,7 +37,7 @@
             <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
             @foreach ($imageproducts as $imageproduct)
                 <figure>
-                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$imageproduct->image)}}" width="500" alt="{{$imageproduct->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/imageproducts/'.$imageproduct->image)}}" width="500" alt="{{$imageproduct->image}}">
                     <figcaption><small>{{$product->name}}</small></figcaption>
                 </figure>
             @endforeach
@@ -61,7 +62,11 @@
         </div>
         <div class="col">
                 <div class="form-floating">
-                <b><h4 class="text-break">{{ $product->description}}</h4></b>
+                    <h6 class="text-break">SKU: {{ $product->sku}}</h6>
+                </div>
+                <br>
+                <div class="form-floating">
+                    <b><h4 class="text-break">{{ $product->description}}</h4></b>
                 </div>
                 <br>
 
@@ -75,12 +80,6 @@
                 <br>
                 <div class="row">
                     <div class="col">
-                        <label for="Stock">Stock</label>
-                        <h5 class="text-break" style="color: #01a800">@if (($product->stock)>0) Disponible @endif</h5>
-                        <h5 class="text-break" style="color: #971914">@if (($product->stock)<=0) Agotado @endif</h5>
-                    </div>
-
-                    <div class="col">
                         <label for="price">Precio</label>
                         @if(($product->discount)>0)
                             <p class="text-break" style="text-decoration: line-through">${{ $product->normal_price }} MXN</p>
@@ -88,6 +87,9 @@
                         @else
                             <h3 class="text-break">${{ $product->normal_price }} MXN</h3>
                         @endif
+                    </div>
+                    <div class="col">
+                        
                     </div>
                 </div>
                 <br>

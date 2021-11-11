@@ -27,7 +27,7 @@
                     <div class="col">
                         <div class="card h-100 text-center">
                             <a href="{{ route('providers.show',$provider->id) }}" class="card-link">
-                                <img class="rounded mx-auto d-block" src="../storage/app/public/uploads/{{$provider->image}}" width="60%" style="margin:5%" alt="Imagen no disponible">
+                                <img class="rounded mx-auto d-block" src="../storage/app/public/uploads/providers/{{$provider->image}}" width="60%" style="margin:5%" alt="Imagen no disponible">
                             </a>
                             <div class="card-body">
                                 <a href="{{ route('providers.show',$provider->id) }}" class="card-link">

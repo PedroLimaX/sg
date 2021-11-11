@@ -7,7 +7,7 @@
                 <form action="{{ url('/provider/'.$provider->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PATCH') }}
-                    <h1 class="text-break">{{ $provider->name }}</h1>
+                    <h1 class="text-break text-center">{{ $provider->name }}</h1>
                     @if(count($errors)>0)
                         <div class="alert alert-danger" roler="alert">
                             <ul>
@@ -18,13 +18,13 @@
                         </div>
                     @endif
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             @if(isset($provider->image))
                                 <div class="gallery-main">
                                     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
                                     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                                     <figure>
-                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$provider->image)}}" width="500" alt="{{$provider->image}}">
+                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/providers/'.$provider->image)}}" width="500" alt="{{$provider->image}}">
                                         <figcaption>{{$provider->name}} <small>{{$provider->image}}</small></figcaption>
                                     </figure>
                                 </div>
@@ -41,8 +41,9 @@
                             @endif
                         </div>
                         <div class="col">
+                            <br><br>
                             <div class="form-floating">
-                                <b><p class="text-break">{{ $provider->description}}</p></b>
+                                <p class="text-break">{{ $provider->description}}</p>
                             </div>
                             <br>
                             <label for="location">Ubicacion</label>
@@ -67,7 +68,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="col-md-3 offset-md-8">
+                    <div class="col-md-4 offset-md-8">
                         @if(Auth::check())
                             @if((Auth::user()->rol_id==1)||($provider->id==Auth::user()->provider_id))
                                 <a href="{{ route('providers.edit',$provider->id) }}" class="btn btn-tertiary btn-lg">
@@ -75,7 +76,7 @@
                             @endif
                             @if($provider->id==Auth::user()->provider_id)
                                 <a class="btn btn-primary btn-lg" href="{{url('product/import-form')}}">
-                                    <i class="fas fa-table"></i></a>
+                                    <i class="fas fa-table"></i> <small>| Actualizar inventario<small></a>
                             @endif
                         @endif
                     </div>

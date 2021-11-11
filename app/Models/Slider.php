@@ -21,7 +21,7 @@ class Slider extends Model
     
     static $rules = [
 		  'title' => 'required',
-		  'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+		  'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
     ];
 
     protected $perPage = 20;

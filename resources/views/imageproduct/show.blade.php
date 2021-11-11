@@ -25,7 +25,7 @@
         <div class="col-sm-4">
             <div class="gallery-main">
                 <figure>
-                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/imageproducts/'.$product->image)}}" width="500" alt="{{$product->image}}">
                     <figcaption>{{$product->name}} <small>{{$product->image}}</small></figcaption>
                 </figure>
             </div>
@@ -33,15 +33,15 @@
                 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
                 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                 <figure>
-                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/imageproducts/'.$product->image)}}" width="500" alt="{{$product->image}}">
                     <figcaption>{{$product->name}} <small>{{$product->image}}</small></figcaption>
                 </figure>
                 <figure>
-                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/imageproducts/'.$product->image)}}" width="500" alt="{{$product->image}}">
                     <figcaption>{{$product->name}} <small>{{$product->image}}</small></figcaption>
                 </figure>
                 <figure>
-                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$product->image)}}" width="500" alt="{{$product->image}}">
+                    <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/imageproducts/'.$product->image)}}" width="500" alt="{{$product->image}}">
                     <figcaption>{{$product->name}} <small>{{$product->image}}</small></figcaption>
                 </figure>
             </div>

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-4">
-            <img class="rounded shadow" src="{{asset('../storage/app/public/uploads/'.$user->image)}}" width="300" alt="">
+            <img class="rounded shadow" src="{{asset('../storage/app/public/uploads/users/'.$user->image)}}" width="300" alt="">
             <br><br>
         <input class="form-control btn" type="file" name="image" value="{{isset($user->image)}}" id="image">
     </div>
@@ -76,7 +76,7 @@
         <br>
         <div class="alert alert-info alert-dismissible d-flex align-items-center fade show" roler="alert">
             <i class="fas fa-info-circle"></i>
-                <strong class="mx-2">Importante!</strong>Modificar el rol cliente a proveedor requiere asignarle la empresa a la que pertenece dicho usuario
+                <strong class="mx-2">Importante!</strong>Modificar el rol de cliente a proveedor requiere asignarle la empresa a la que pertenece dicho usuario
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left:10px">
                     <span aria-hidden="true">&times;</span>
                 </button>

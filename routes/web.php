@@ -16,16 +16,13 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('/home');
+    return view('home');
 });
 
 Route::get('/policy', function () {
     return view('policy');
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
 
 Auth::routes(['reset'=>false]);
 
@@ -45,11 +42,9 @@ Route::post('/product/import',[ProductController::class,'import'])->name('produc
 Route::post('/product/{id}/addtocart',[ProductController::class,'addtocart'])->name('product.addtocart')->middleware('auth');
 
 
-
-
 Route::get('/product/offers',[ProductController::class,'offers']);
 
 Route::post('/order/doOrder',[OrderController::class,'doOrder'])->name('order.doOrder');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');

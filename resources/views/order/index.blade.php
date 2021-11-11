@@ -3,9 +3,9 @@
   <h1>{{ __('Mis pedidos') }}</h1>
    
     <div class="container">
-  @if(Session::has('mensaje'))
+  @if(Session::has('success'))
     <div class="alert alert-success" roler="alert">
-    {{ Session::get('mensaje') }}
+    {{ Session::get('success') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
 </button>
@@ -24,6 +24,7 @@
             <i class=" text-muted fas fa-map-marker-alt"></i>
               {{$order->user->address}}</p>
           <small class="text-muted">Pedido realizado el {{ \Carbon\Carbon::parse($order->created_at,'America/Mexico_City')->format('d/m/Y')}}</small>
+        
         </div>
         @foreach( $carts as $cart)
           @if($cart->code==$order->code)
@@ -32,7 +33,7 @@
               <div class="d-flex w-100 justify-content-between">
                 <img src="../storage/app/public/uploads/{{$cart->product->image}}" alt="{{ $cart->product->image}}" width="70px">
                 <b><p class="mb-1 text-left"> {{$cart->product->name}}</p></b>
-                <p class="mb-1 text-left"> {{$cart->cart_status->name}}</p>
+                <p class="mb-1 text-left"> {{$cart->cartstatus->name}}</p>
                 <small class="text-muted text-right">Subtotal: ${{($cart->subtotal)}} MXN | {{$cart->quant_product}} piezas </small>
               </div>
             </a>
@@ -41,12 +42,20 @@
         @endforeach
         <br>
         <div>
+          @if(($cart->cart_status_id) < 3)
+            <form action="{{ route('orders.destroy',$order->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-primary"><i class="fas fa-ban"></i> Cancelar Pedido</button>
+            </form>
+          @endif
           <b><p class="text-muted text-center">Total: ${{$order->total}} MXN </p></b>
+          
         </div>
+        
       </a>
     </div>
       @else
-      
         @foreach( $carts as $cart)
           @if($cart->code==$order->code)
             @if((($cart->user_id)==Auth::user()->id)||(($cart->provider_id)==Auth::user()->provider_id))
@@ -61,11 +70,11 @@
                       {{$order->user->address}}</p>
                     <small class="text-muted">Pedido realizado el {{ \Carbon\Carbon::parse($order->created_at,'America/Mexico_City')->format('d/m/Y')}}</small>
                   </div>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <a href="{{route('carts.show', $cart->id)}}" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                       <img src="../storage/app/public/uploads/{{$cart->product->image}}" alt="{{ $cart->product->image}}" width="70px">
                       <b><p class="mb-1 text-left"> {{$cart->product->name}}</p></b>
-                      <p class="mb-1 text-left"> {{$cart->cart_status->name}}</p>
+                      <p class="mb-1 text-left"> {{$cart->cartstatus->name}}</p>
                       
                       <small class="text-muted text-right">Subtotal: ${{($cart->subtotal)}} MXN | {{$cart->quant_product}} piezas </small>
                     </div>

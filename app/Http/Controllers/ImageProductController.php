@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
+use File;
 /**
  * Class ImageProductController
  * @package App\Http\Controllers
@@ -35,7 +36,7 @@ class ImageProductController extends Controller
     public function create()
     {
         $imageproduct= new ImageProduct();
-        $products= Product::pluck('code', 'id');
+        $products= Product::where('provider_id', Auth::user()->provider_id)->pluck('sku', 'id');
         return view('imageproduct.create', compact('imageproduct','products'));
     }
 
@@ -51,7 +52,7 @@ class ImageProductController extends Controller
         $input=$request->all();
         
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
+            $destinationPath = "../storage/app/public/uploads/imageproducts/";
             $profileImage = 'imageproduct_'.date('YmdHis') . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -64,7 +65,7 @@ class ImageProductController extends Controller
             ->update(['image' => $input['image']]);
 
         return redirect()->route('imageproducts.index')
-            ->with('success', 'Imagen creado correctamente');
+            ->with('success', 'Imagen creada correctamente');
     }
 
     /**
@@ -89,7 +90,7 @@ class ImageProductController extends Controller
     public function edit($id)
     {
         $imageproduct= ImageProduct::find($id);
-        $products= Product::pluck('code', 'id');
+        $products= Product::where('provider_id', Auth::user()->provider_id)->pluck('sku', 'id');
         return view('imageproduct.edit', compact('imageproduct','products'));
     }
 
@@ -107,8 +108,8 @@ class ImageProductController extends Controller
         $input = $request->all();
   
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
-            $profileImage = "imageproduct_".$imageproduct['id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $destinationPath = "../storage/app/public/uploads/imageproducts/";
+            $profileImage = "product_".$imageproduct['id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }else{
@@ -118,7 +119,7 @@ class ImageProductController extends Controller
         $imageproduct->update($input);
 
         return redirect('imageproducts')
-            ->with('success', 'Proveedor actualizado correctamente');
+            ->with('success', 'Imagen actualizada correctamente');
     }
 
     /**
@@ -128,9 +129,13 @@ class ImageProductController extends Controller
      */
     public function destroy($id)
     {
-        $imageproduct = ImageProduct::find($id)->delete();
-
+        $imageproduct = ImageProduct::find($id);
+        $image_path = "../storage/app/public/uploads/imageproducts/$imageproduct->image";
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        $imageproduct->delete();
         return redirect()->route('imageproducts.index')
-            ->with('success', 'Proveedor eliminado correctamente');
+            ->with('success', 'Imagen eliminada correctamente');
     }
 }

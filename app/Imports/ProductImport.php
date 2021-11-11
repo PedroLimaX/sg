@@ -16,25 +16,30 @@ class ProductImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return Product::updateorCreate([
-            'code' => $row['code']
+        Product::updateorCreate([
+            'sku' => $row['sku']
             ],
 
             [
-            'code' => $row['code'],
-            'name' => $row['name'],
-            'key_words' => $row['key_words'],
-            'description' => $row['description'],
-            'specs' => $row['specs'],
-            'normal_price' => $row['normal_price'],
-            'discount' => $row['discount'],
-            'final_price' => ($row['normal_price']-(($row['normal_price']*$row['discount'])/100)),
-            'stock' => $row['stock'],
-            'max_per_order' => $row['max_per_order'],
-            'materials' => $row['materials'],
-            'maker' => $row['maker'],
-            'provider_id' => Auth::user()->provider_id,
-            'category_id' => $row['category_id'],
-        ]);
+                'sku' => $row['sku'],
+                'name' => $row['name'],
+                'key_words' => $row['key_words'],
+                'description' => $row['description'],
+                'specs' => $row['specs'],
+                'normal_price' => $row['normal_price'],
+                'discount' => $row['discount'],
+                'final_price' => ($row['normal_price']-(($row['normal_price']*$row['discount'])/100)),
+                'quantity' => $row['quantity'],
+                'max_per_order' => $row['max_per_order'],
+                'materials' => $row['materials'],
+                'maker' => $row['maker'],
+                'provider_id' => Auth::user()->provider_id,
+                'category_id' => $row['category_id'],
+                'imported' => '1'
+                
+            ]);
+        /*if(!(Product::find($row['sku']))){
+                Product::where('imported',0)->delete();
+        }*/
     }
 }

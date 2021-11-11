@@ -11,7 +11,7 @@
                         <form method="POST" action="{{ route('carts.update', $cart->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
-                            @include('cart.form', ['modo'=>'Editar']);
+                            @include('cart.form', ['modo'=>'Editar'])
                         </form>
                     </div>
                 </div>

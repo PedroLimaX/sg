@@ -24,7 +24,7 @@
                                     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
                                     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                                     <figure>
-                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$slider->image)}}" width="1000" alt="{{$slider->image}}">
+                                        <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/sliders/'.$slider->image)}}" width="1000" alt="{{$slider->image}}">
                                         <figcaption>{{$slider->title}} <small>{{$slider->image}}</small></figcaption>
                                     </figure>
                                 </div>

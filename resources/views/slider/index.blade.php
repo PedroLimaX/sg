@@ -9,7 +9,7 @@
     </button>
 </div>
 @endif
-<a class="btn btn-secondary btn-lg" href="{{ url('products/') }}">
+<a class="btn btn-secondary btn-lg" href="{{ route('/') }}">
   <i class="fas fa-chevron-circle-left"></i></a>
   <br><br>
 <a href="{{ route('sliders.create') }}" class="btn btn-tertiary">
@@ -19,7 +19,7 @@
     @foreach( $sliders as $slider)
     <div class="col" style="margin-top:20px">
       <div class="card text-white shadow">
-        <img src="{{URL::asset('../storage/app/public/uploads/'.$slider->image)}}" class="card-img" alt="...">
+        <img src="{{URL::asset('../storage/app/public/uploads/sliders/'.$slider->image)}}" class="card-img" alt="...">
         <div class="card-img-overlay mx-auto">
           <div class="carousel-caption d-none d-md-block" style="padding:10px">
             <p class="card-text text-white"> {{$slider->title}}</p>

@@ -9,8 +9,6 @@
                     </button>
                 </div>
             @endif
-            <!--<a href="{{ url('user/create') }}" class="btn btn-tertiary">
-            <i class="fas fa-user-plus"></i> Nuevo usuario</a>-->
             <br><br>
             <table class="table table-borderless table-hover">
                 <thead class="">
@@ -30,7 +28,7 @@
                         <td> {{ $user->rol->name}} </td>
                         <td> {{ $user->telephone}} </td>
                         <td> 
-                            <img class="rounded" src="{{URL::asset('../storage/app/public/uploads/'.$user->image)}}" width="40" alt="">
+                            <img class="rounded" src="{{URL::asset('../storage/app/public/uploads/users/'.$user->image)}}" width="40" alt="">
                         </td>
                         <td> 
                             <a href="{{ route('users.show',$user->id) }}" class="btn btn-secondary">

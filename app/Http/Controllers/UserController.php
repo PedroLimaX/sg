@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 
 use Illuminate\Support\Facades\Storage;
+
+use File;
 /**
  * Class UserController
  * @package App\Http\Controllers
@@ -54,7 +56,7 @@ class UserController extends Controller
         $input=$request->all();
         
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
+            $destinationPath = "../storage/app/public/uploads/users/";
             $profileImage = "user_".$request['id'].'_'.$request['rol_id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -108,7 +110,7 @@ class UserController extends Controller
         $input = $request->all();
   
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
+            $destinationPath = "../storage/app/public/uploads/users/";
             $profileImage = "user_".$user['id'].'_'.$user['rol_id'].'_'.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -129,7 +131,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id)->delete();
+        $user = Users::find($id);
+        $image_path = "../storage/app/public/uploads/users/$user->image";
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        $user->delete();
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
     }

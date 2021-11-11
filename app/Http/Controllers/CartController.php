@@ -37,11 +37,11 @@ class CartController extends Controller
     public function create()
     {
         $cart = new Cart();
-        $users= user::pluck('name', 'id');
-        $cart_status= user::pluck('name', 'id');
+        $users= User::pluck('name', 'id');
+        $cartstatus= CartStatus::pluck('name', 'id');
         $providers= Provider::pluck('name', 'id');
         $products= Product::pluck('name', 'id');
-        return view('cart.create', compact('cart','cart_status','users','providers','products'));
+        return view('cart.create', compact('cart','cartstatus','users','providers','products'));
     }
 
     /**
@@ -90,7 +90,8 @@ class CartController extends Controller
         $users= user::pluck('name', 'id');
         $providers= Provider::pluck('name', 'id');
         $products= Product::pluck('name', 'id');
-        return view('cart.edit', compact('cart','users','providers','products'));
+        $cartstatus= CartStatus::pluck('name', 'id');
+        return view('cart.edit', compact('cart','users','providers','products','cartstatus'));
     }
 
     /**
@@ -117,8 +118,8 @@ class CartController extends Controller
 
         $cart->update($input);
 
-        return redirect()->route('carts.index')
-            ->with('success', 'Carrito actualizaco correctamente');
+        return redirect()->route('orders.index')
+            ->with('success', 'Carrito actualizado correctamente');
     }
 
     /**
@@ -129,7 +130,7 @@ class CartController extends Controller
     public function destroy($id)
     {
         $cart = Cart::find($id)->delete();
-        return redirect()->route('carts.index')
+        return redirect()->route('orders.index')
             ->with('success', 'Producto removido correctamente');
     }
 }

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-6">
-        <img class="rounded" src="{{asset('../storage/app/public/uploads/'.$imageproduct->image)}}" width="450" alt="">
+        <img class="rounded" src="{{asset('../storage/app/public/uploads/imageproducts/'.$imageproduct->image)}}" width="450" alt="">
         <input class="form-control btn" type="file" name="image" value="{{isset($imageproduct->image)}}" id="image">
     </div>
     <div class="col">

@@ -17,10 +17,10 @@
                     <a class="btn btn-secondary btn-lg" href="{{ url('users/') }}">
                         <i class="fas fa-chevron-circle-left"></i></a>
                 @else
-                    <a class="btn btn-secondary btn-lg" href="{{ url('products/') }}">
+                    <a class="btn btn-secondary btn-lg" href="{{ url('/') }}">
                         <i class="fas fa-chevron-circle-left"></i></a>
                 @endif
-                <h1 class="text-break">{{$user->name}}</h1>
+                
                 @if(count($errors)>0)
                     <div class="alert alert-danger" roler="alert">
                         <ul>
@@ -30,6 +30,7 @@
                         </ul>
                     </div>
                 @endif
+                <h1 class="text-break text-center">{{$user->name}}</h1>
                 <div class="row">
                     <div class="col-sm-4">
                     @if(isset($user->image))
@@ -37,7 +38,7 @@
                             <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
                             <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                             <figure>
-                                <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/'.$user->image)}}" width="500" alt="{{$user->image}}">
+                                <img class="img-fluid" src="{{URL::asset('../storage/app/public/uploads/users/'.$user->image)}}" width="500" alt="{{$user->image}}">
                                 <figcaption>{{$user->name}} <small>{{$user->image}}</small></figcaption>
                             </figure>
                         </div>
@@ -62,11 +63,11 @@
                         <br>
                         <div class="row">
                             <div class="col">
-                                <label for="Direccion">Direccion</label>
+                                <label for="Direccion">Dirección</label>
                                 <p class="text-break">{{$user->address}}</p>
                             </div>
                             <div class="col">
-                                <label for="Telefono">Telefono</label>
+                                <label for="Telefono">Teléfono</label>
                                 <p class="text-break">{{$user->telephone}}</p>
                             </div>
                         </div>
@@ -93,7 +94,7 @@
                         @endif
                     @endif
                 </div>
-                <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion
+                <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificación
                     {{ \Carbon\Carbon::parse($user->updated_at,'America/Mexico_City')->format('d/m/Y')}}
                     a las {{ \Carbon\Carbon::parse($user->updated_at,'America/Mexico_City')->format('H:i:s')}} hrs</i>
     

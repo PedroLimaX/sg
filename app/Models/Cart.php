@@ -30,6 +30,7 @@ class Cart extends Model
 		'subtotal' => 'required',
 		'provider_id' => 'required',
 		'user_id' => 'required',
+		'cart_status_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -39,16 +40,8 @@ class Cart extends Model
      *
      * @var array
      */
-    protected $fillable = ['product_id','quant_product','subtotal','provider_id','user_id'];
+    protected $fillable = ['product_id','quant_product','subtotal','provider_id','user_id','cart_status_id'];
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function cart_status()
-    {
-        return $this->hasOne('App\Models\CartStatus', 'id', 'cart_status_id');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -72,6 +65,14 @@ class Cart extends Model
     public function provider()
     {
         return $this->hasOne('App\Models\Provider', 'id', 'provider_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function cartstatus()
+    {
+        return $this->hasOne('App\Models\CartStatus', 'id', 'cart_status_id');
     }
 
 }

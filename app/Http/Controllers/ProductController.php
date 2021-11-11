@@ -11,10 +11,12 @@ use Illuminate\Http\Request;
 use App\Imports\ProductImport;
 use Maatwebsite\Excel\Facades\Excel;
 
-
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use File;
+
+
 /**
  * Class ProductController
  * @package App\Http\Controllers
@@ -77,7 +79,7 @@ class ProductController extends Controller
         $request->validate(Product::$rules);
         $input=$request->all();
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
+            $destinationPath = "../storage/app/public/uploads/product/";
             $profileImage = "product_".$request($id).date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -147,7 +149,7 @@ class ProductController extends Controller
         $input = $request->all();
   
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads/";
+            $destinationPath = "../storage/app/public/uploads/product/";
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -168,7 +170,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id)->delete();
+        $product = Product::find($id);
+        $image_path = "../storage/app/public/uploads/imageproducts/$product->image";
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        $product->delete();
         return redirect()->route('products.index')
             ->with('success', 'product deleted successfully');
     }
@@ -180,7 +187,9 @@ class ProductController extends Controller
         $request->validate([
             'csv-file' => 'required|mimes:csv'
         ]);
+        Product::where('provider_id', Auth::user()->provider_id)->update(array('imported' => 0));
         Excel::import(new ProductImport,request()->file('csv-file'));
+        Product::where('imported',0)->delete();
         return redirect()->route('providers.index')
             ->with('success', 'Inventario Actualizado Correctamente');
     }   

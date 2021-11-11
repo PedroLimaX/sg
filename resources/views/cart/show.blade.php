@@ -44,8 +44,8 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="materials">Status</label>
-                                    <p class="text-break">{{ $cart->cart_status->name }}
-                                        <i><span class="text-muted">( {{ $cart->cart_status->details }})</span></i></p> 
+                                    <p class="text-break">{{ $cart->cartstatus->name }}
+                                        <i><span class="text-muted">( {{ $cart->cartstatus->details }})</span></i></p> 
                                 </div>
                             </div>                            
                             <br>
@@ -53,13 +53,10 @@
                     </div>
                     <br>
                     <div class="col-md-3 offset-md-10">
-                        @if($cart->cart_status_id<=3)
-                            <form action="{{ route('carts.destroy',$cart->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-minus-circle"></i></button>
-                            </form>
-                            @endif
+                        @if(Auth::user()->rol_id==3)
+                        @elseif(Auth::user()->rol_id==2)
+                            <a href="{{ route('carts.edit',$cart->id) }}" class="btn btn-tertiary btn-lg"><i class="fa fa-fw fa-edit"></i></a>
+                        @endif
                     </div>
                     <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion
                         {{ \Carbon\Carbon::parse($cart->updated_at,'America/Mexico_City')->format('d/m/Y')}}

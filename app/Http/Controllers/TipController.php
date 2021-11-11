@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Tip;
 use Illuminate\Http\Request;
 
+use File;
+
 /**
  * Class TipController
  * @package App\Http\Controllers
@@ -48,7 +50,7 @@ class TipController extends Controller
         $input=$request->all();
         
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads";
+            $destinationPath = "../storage/app/public/uploads/tips/";
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -97,7 +99,7 @@ class TipController extends Controller
         $input = $request->all();
   
         if ($image = $request->file('image')) {
-            $destinationPath = "../storage/app/public/uploads";
+            $destinationPath = "../storage/app/public/uploads/tips/";
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
@@ -118,8 +120,12 @@ class TipController extends Controller
      */
     public function destroy($id)
     {
-        $tip = Tip::find($id)->delete();
-
+        $tip = Tip::find($id);
+        $image_path = "../storage/app/public/uploads/tips/$tip->image";
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        $tip->delete();
         return redirect()->route('tips.index')
             ->with('success', 'Tip eliminado correctamente');
     }
