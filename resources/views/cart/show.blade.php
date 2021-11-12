@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             @if(isset($cart->product->image))
-                                <img class="rounded" src="{{asset('../storage/app/public/uploads/'.$cart->product->image)}}" width="350" alt="{{$cart->product->image}}">
+                                <img class="rounded" src="{{asset('../storage/app/public/uploads/imageproducts/'.$cart->product->image)}}" width="350" alt="{{$cart->product->image}}">
                             @endif
                         </div>
                         <div class="col">
@@ -45,8 +45,51 @@
                                 <div class="col">
                                     <label for="materials">Status</label>
                                     <p class="text-break">{{ $cart->cartstatus->name }}
-                                        <i><span class="text-muted">( {{ $cart->cartstatus->details }})</span></i></p> 
+                                        <i><span class="text-muted">( {{ $cart->cartstatus->details }})</span></i></p>
+                                    <div class="progress">
+                                        @switch($cart->cart_status_id)
+                                            @case(1)
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 16.6%"
+                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @break
+
+                                            @case(2)
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 33.2%"
+                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @break
+                                            
+                                            @case(3)
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 50%"
+                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @break
+
+                                            @case(4)
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 66.6%" 
+                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @break
+                                            
+                                            @case(5)
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 83.2%"
+                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @break
+
+                                            @case(6)
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @break
+
+                                            @case(7)
+                                            
+                                            @break
+
+                                            @case(8)
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 33.2%"
+                                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @break
+                                        @endswitch
+                                    </div>
                                 </div>
+                                
                             </div>                            
                             <br>
                         </div>

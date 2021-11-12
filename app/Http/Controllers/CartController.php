@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use PDF;
 /**
  * Class CartController
  * @package App\Http\Controllers
@@ -130,7 +132,19 @@ class CartController extends Controller
     public function destroy($id)
     {
         $cart = Cart::find($id)->delete();
-        return redirect()->route('orders.index')
+        return redirect()->route('carts.index')
             ->with('success', 'Producto removido correctamente');
+    }
+
+    public function getOrdersReport(){
+        $actualmonth = date("m");
+        $carts= Cart::whereMonth('created_at', '=', $actualmonth)->where('provider_id', Auth::user()->provider_id)->get();
+        return view('monthlyReport', compact('carts'));
+    }
+    public function downloadPDF(){
+        $actualmonth = date("m");
+        $carts= Cart::whereMonth('created_at', '=', $actualmonth)->where('provider_id', Auth::user()->provider_id)->get();
+        $pdf = PDF::loadView('monthlyReport',compact('carts'));
+        return $pdf->download('monthlyReport.pdf');
     }
 }

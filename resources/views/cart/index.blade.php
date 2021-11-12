@@ -41,7 +41,7 @@
                         <tr>
                           <td>{{ ++$i }}</td>
                           <td>
-                            <img class="img-rounded" src="../storage/app/public/uploads/{{$cart->product->image}}"
+                            <img class="img-rounded" src="../storage/app/public/uploads/imageproducts/{{$cart->product->image}}"
                              alt="{{ $cart->product->image}}" width="40px"></td>
                           <td>{{ $cart->product->name }}</td>
                           <td>{{ $cart->product->final_price}}</td>

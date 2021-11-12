@@ -1,5 +1,18 @@
 @extends('layouts.app')
 @section('content')
+
+@if(Auth::user()->rol_id==3)  
+<div class="alert alert-info alert-dismissible d-flex align-items-center fade show shadow" roler="alert">
+  <i class="fas fa-info-circle"></i>
+      <strong class="mx-2">Importante!</strong>Realiza el deposito de tu pedido a la tarjeta
+      4444 4444 4444 4444 del banco HSBC<br> Ingresa el codigo de tu pedido en la referencia de 
+      pago para que el proveedor pueda darle seguimiento a tu pedido
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left:10px">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+@endif
+
   <h1>{{ __('Mis pedidos') }}</h1>
    
     <div class="container">
@@ -9,9 +22,9 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
 </button>
-
 </div>
 @endif
+
 <div class="md-1">
   @foreach( $orders as $order)
   @if(Auth::user()->id==$order->user_id)
@@ -31,11 +44,55 @@
           @if((($cart->user_id)==Auth::user()->id)||(($cart->provider_id)==Auth::user()->provider_id))
             <a href="{{route('carts.show', $cart->id)}}" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
-                <img src="../storage/app/public/uploads/{{$cart->product->image}}" alt="{{ $cart->product->image}}" width="70px">
+                <img src="../storage/app/public/uploads/imageproducts/{{$cart->product->image}}" alt="{{ $cart->product->image}}" width="70px">
                 <b><p class="mb-1 text-left"> {{$cart->product->name}}</p></b>
                 <p class="mb-1 text-left"> {{$cart->cartstatus->name}}</p>
                 <small class="text-muted text-right">Subtotal: ${{($cart->subtotal)}} MXN | {{$cart->quant_product}} piezas </small>
+                
               </div>
+              <br>
+              <div class="progress">
+                @switch($cart->cart_status_id)
+                  @case(1)
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 16.6%"
+                      aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+
+                  @case(2)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 33.2%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+                  
+                  @case(3)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 50%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+
+                  @case(4)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 66.6%" 
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+                  
+                  @case(5)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 83.2%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+
+                  @case(6)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+
+                  @case(7)
+                  
+                  @break
+
+                  @case(8)
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 33.2%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+                @endswitch
+            </div>
             </a>
             @endif
           @endif
@@ -50,9 +107,7 @@
             </form>
           @endif
           <b><p class="text-muted text-center">Total: ${{$order->total}} MXN </p></b>
-          
         </div>
-        
       </a>
     </div>
       @else
@@ -72,7 +127,7 @@
                   </div>
                   <a href="{{route('carts.show', $cart->id)}}" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                      <img src="../storage/app/public/uploads/{{$cart->product->image}}" alt="{{ $cart->product->image}}" width="70px">
+                      <img class="img-rounded" src="../storage/app/public/uploads/imageproducts/{{$cart->product->image}}" alt="{{ $cart->product->image}}" width="70px">
                       <b><p class="mb-1 text-left"> {{$cart->product->name}}</p></b>
                       <p class="mb-1 text-left"> {{$cart->cartstatus->name}}</p>
                       
@@ -83,6 +138,49 @@
                   <div>
                     <b><p class="text-center">Total: ${{$cart->subtotal}} MXN </p></b>
                   </div>
+                  <br>
+              <div class="progress">
+                @switch($cart->cart_status_id)
+                  @case(1)
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 16.6%"
+                      aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+
+                  @case(2)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 33.2%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+                  
+                  @case(3)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 50%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+
+                  @case(4)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 66.6%" 
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+                  
+                  @case(5)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 83.2%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+
+                  @case(6)
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+
+                  @case(7)
+                  
+                  @break
+
+                  @case(8)
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 33.2%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  @break
+                @endswitch
+            </div>
                 </a>
             </div>
             @endif

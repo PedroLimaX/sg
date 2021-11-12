@@ -60,7 +60,7 @@ class OrderController extends Controller
             ->where('cart_status_id', 1 and 'user_id', Auth::user()->id)
             ->update(['cart_status_id' => 2, 'code'=> date('Ymd').Auth::user()->id.$token]);
         
-        return redirect()->route('orders.index')->with('success', "$token");
+        return redirect()->route('orders.index')->with('success', "Pedido realizado correctamente");
     }
 
     /**

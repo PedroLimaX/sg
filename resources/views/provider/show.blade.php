@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="col-md-4 offset-md-8">
+                    <div class="col-md-6 offset-md-7">
                         @if(Auth::check())
                             @if((Auth::user()->rol_id==1)||($provider->id==Auth::user()->provider_id))
                                 <a href="{{ route('providers.edit',$provider->id) }}" class="btn btn-tertiary btn-lg">
@@ -76,7 +76,10 @@
                             @endif
                             @if($provider->id==Auth::user()->provider_id)
                                 <a class="btn btn-primary btn-lg" href="{{url('product/import-form')}}">
-                                    <i class="fas fa-table"></i> <small>| Actualizar inventario<small></a>
+                                    <i class="fas fa-table"></i> <small> Actualizar inventario<small></a>
+
+                                <a class="btn btn-primary btn-lg" href="{{route('downloadPDF')}}">
+                                    <i class="fas fa-file-pdf"></i> <small> Reporte de ventas<small></a>
                             @endif
                         @endif
                     </div>

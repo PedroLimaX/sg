@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,10 @@ Route::post('/product/{id}/addtocart',[ProductController::class,'addtocart'])->n
 Route::get('/product/offers',[ProductController::class,'offers']);
 
 Route::post('/order/doOrder',[OrderController::class,'doOrder'])->name('order.doOrder');
+
+Route::get('/monthlyReport',[CartController::class, 'getOrdersReport']);
+
+Route::get('/download-pdf',[CartController::class, 'downloadPDF'])->name('downloadPDF');
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');

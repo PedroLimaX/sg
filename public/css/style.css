@@ -321,6 +321,12 @@ table tr td{
   background-color: var(--primary-color);
   color: var(--fourty-color);
 }
+
+/*Progress Bar*/
+.progress{
+  background-color: var(--light-color);
+  height: 10px;
+}
 /*Pagination*/
 .pagination .page-item .page-link{
   color: var(--primary-color);

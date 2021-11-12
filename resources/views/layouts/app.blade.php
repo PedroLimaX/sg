@@ -22,7 +22,7 @@
     
     <link href="{{ asset('css/app.css') }}" rel ="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
-    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('/storage/sg_icon.png') }}">
     
 </head>
@@ -235,19 +235,19 @@
     <!-- Section: Social media -->
     <section class="mb-3">
       <!-- Facebook -->
-      <a class="btn btn-primary btn-lg" href="#"
+      <a class="btn btn-primary btn-lg" href="https://www.facebook.com/" target="_blank"
         ><i class="fab fa-facebook"></i
       ></a>
       <!-- Twitter -->
-      <a class="btn btn-primary btn-lg" href="#"
+      <a class="btn btn-primary btn-lg" href="https://twitter.com/explore" target="_blank"
         ><i class="fab fa-twitter"></i
       ></a>
       <!-- Instagram -->
-      <a class="btn btn-primary btn-lg" href="#"
+      <a class="btn btn-primary btn-lg" href="https://www.instagram.com/?hl=es" target="_blank"
         ><i class="fab fa-instagram"></i
       ></a>
       <!-- Whatsapp -->
-      <a class="btn btn-primary btn-lg" href="#"
+      <a class="btn btn-primary btn-lg" href="https://web.whatsapp.com/" target="_blank"
         ><i class="fab fa-whatsapp"></i
       ></a>
     </section>
