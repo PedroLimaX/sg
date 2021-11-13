@@ -81,6 +81,10 @@
                                 <a class="btn btn-primary btn-lg" href="{{route('downloadPDF')}}">
                                     <i class="fas fa-file-pdf"></i> <small> Reporte de ventas<small></a>
                             @endif
+                            @if(Auth::user()->roll_id==1)
+                                <a class="btn btn-primary btn-lg" href="{{route('downloadPDF')}}">
+                                    <i class="fas fa-file-pdf"></i> <small> Reporte de ventas<small></a>
+                            @endif
                         @endif
                     </div>
                     <i class="text-muted" style="font:italic; font-size: 13px">Ultima modificacion

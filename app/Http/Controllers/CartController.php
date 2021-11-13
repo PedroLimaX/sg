@@ -143,7 +143,12 @@ class CartController extends Controller
     }
     public function downloadPDF(){
         $actualmonth = date("m");
-        $carts= Cart::whereMonth('created_at', '=', $actualmonth)->where('provider_id', Auth::user()->provider_id)->get();
+        if(Auth::user()->rol_id==2){
+            $carts= Cart::whereMonth('created_at', '=', $actualmonth)->where('provider_id', Auth::user()->provider_id)->get();
+        }
+        elseif(Auth::user()->rol_id==1){
+            $carts= Cart::whereMonth('created_at', '=', $actualmonth)->get();
+        }
         $pdf = PDF::loadView('monthlyReport',compact('carts'));
         return $pdf->download('monthlyReport.pdf');
     }

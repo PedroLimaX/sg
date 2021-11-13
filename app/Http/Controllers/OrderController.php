@@ -10,9 +10,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 
+
+use App\Mail\NotifyMailable;
+use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
+
 /**
  * Class OrderController
  * @package App\Http\Controllers
@@ -59,7 +65,16 @@ class OrderController extends Controller
         $carts=DB::table('carts')
             ->where('cart_status_id', 1 and 'user_id', Auth::user()->id)
             ->update(['cart_status_id' => 2, 'code'=> date('Ymd').Auth::user()->id.$token]);
+
+        $provider_id=DB::table('carts')->where('cart_status_id', 2)->where('user_id', Auth::user()->id)->pluck('provider_id');
+        $provider_data=DB::table('providers')->where('id', $provider_id)->pluck('email');
+        $client_data=DB::table('users')->where('id', Auth::user()->id)->select('email', 'name')->get();
+
+        $order_data=DB::table('orders')->where('user_id', Auth::user()->id)->get();
         
+        $email = new NotifyMailable(date('Ymd').Auth::user()->id.$token);
+        Mail::to($provider_data)->send($email);
+
         return redirect()->route('orders.index')->with('success', "Pedido realizado correctamente");
     }
 
