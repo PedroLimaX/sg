@@ -193,7 +193,7 @@
                     </li>
                     @endif
                     <li>
-                        <a href="http://wa.me/+522462380354" target="_blank"class="nav-link px-0 align-middle link-color">
+                        <a href="{{route('listquote.index')}}" class="nav-link px-0 align-middle link-color">
                         <i class="fas fa-hand-holding-usd"></i></i> <span class="ms-1 d-none d-sm-inline">Cotizaciones</span></a>
                     </li>
                     <li>

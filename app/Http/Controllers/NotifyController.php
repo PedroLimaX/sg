@@ -14,7 +14,7 @@ class NotifyController extends Controller
 
     public function store(){
         $email = new NotifyMailable;
-        Mail::to('pedro99slip@gmail.com')->send($email);
-        return "Correo Enviado";
+        Mail::to('support@sgiluminacion.com')->send($email);
+        return redirect()->route('home');
     }
 }

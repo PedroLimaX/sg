@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ListQuoteController;
 
 
 
@@ -55,7 +56,9 @@ Route::get('/monthlyReport',[CartController::class, 'getOrdersReport']);
 
 Route::get('/download-pdf',[CartController::class, 'downloadPDF'])->name('downloadPDF');
 
-//Route::get('notify', [NotifyController::class, 'index'])->name('notify.index');
+Route::get('listquote', [ListQuoteController::class, 'index'])->name('listquote.index');
+
+Route::post('listquote',[ListQuoteController::class, 'store'])->name('listquote.store');
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');

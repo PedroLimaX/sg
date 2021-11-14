@@ -7,22 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotifyMailable extends Mailable
+class ListQuoteMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject="SG Iluminacion Support";
-    public $order_data;
+    public $subject="SG Iluminacion Cotizacion";
+    public $listquote;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($order_data)
+    public function __construct($listquote)
     {
         //
-        $this->order_data= $order_data;
+        $this->listquote= $listquote;
     }
 
     /**
@@ -32,6 +32,6 @@ class NotifyMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.notify');
+        return $this->view('emails.listquote');
     }
 }
