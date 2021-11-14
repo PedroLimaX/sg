@@ -22,7 +22,7 @@
     
     <link href="{{ asset('css/app.css') }}" rel ="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('/storage/sg_icon.png') }}">
     
 </head>
