@@ -22,7 +22,7 @@
     
     <link href="{{ asset('css/app.css') }}" rel ="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
-    <link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('/storage/sg_icon.png') }}">
     
 </head>
@@ -30,6 +30,21 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg shadow navbar-static-top navbar-color">
             <div class="container-fluid">
+            @switch(Carbon\Carbon::now()->month)
+                @case(1) <img src="{{ asset('/storage/monthly-icons/01.png') }}" alt="Año Nuevo | 01" title="Año Nuevo | 01"  width="32"  class="d-inline-block align-text-top"> @break
+                @case(2) <img src="{{ asset('/storage/monthly-icons/02.png') }}" alt="San Valentin | 14" title="San Valentin | 14" width="32"  class="d-inline-block align-text-top"> @break
+                @case(3) <img src="{{ asset('/storage/monthly-icons/03.png') }}" alt="Primavera | 21" title="Primavera | 21" width="32"  class="d-inline-block align-text-top"> @break
+                @case(4) <img src="{{ asset('/storage/monthly-icons/04.png') }}" alt="Dia del Niño | 30" title="Dia del Niño | 30" width="32"  class="d-inline-block align-text-top"> @break
+                @case(5) <img src="{{ asset('/storage/monthly-icons/05.png') }}" alt="Dia de las Madres | 10" title="Dia de las Madres | 10" width="32"  class="d-inline-block align-text-top"> @break
+                @case(6) <img src="{{ asset('/storage/monthly-icons/06.png') }}" alt="Dia del Padre | 22" title="Dia del Padre | 22" width="32"  class="d-inline-block align-text-top"> @break
+                @case(7) <img src="{{ asset('/storage/monthly-icons/07.png') }}" alt="Verano | 20" title="Verano | 20" width="32"  class="d-inline-block align-text-top"> @break
+                @case(8) <img src="{{ asset('/storage/monthly-icons/08.png') }}" alt="Dia de los Abuelos | 28" title="Dia de los Abuelos | 28" width="32"  class="d-inline-block align-text-top"> @break
+                @case(9) <img src="{{ asset('/storage/monthly-icons/09.png') }}" alt="Dia de la Independencia | 16" title="Dia de la Independencia | 16" width="32"  class="d-inline-block align-text-top"> @break
+                @case(10) <img src="{{ asset('/storage/monthly-icons/10.png') }}" alt="Halloween | 31" title="Halloween | 31" width="32"  class="d-inline-block align-text-top"> @break
+                @case(11) <img src="{{ asset('/storage/monthly-icons/11.png') }}" alt="Dia de Muertos | 02" title="Dia de Muertos | 02" width="32"  class="d-inline-block align-text-top"> @break
+                @case(12) <img src="{{ asset('/storage/monthly-icons/12.png') }}" alt="Navidad | 25" title="Navidad | 25" width="32"  class="d-inline-block align-text-top"> @break
+            @endswitch
+
                 <a class="navbar-brand link-color" href="{{ route('/') }}">
                     <img src="{{ asset('/storage/sg_logo.png') }}" alt="SG logo"  width="200"  class="d-inline-block align-text-top">
                 </a>
@@ -93,7 +108,7 @@
                                         <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
                                     @elseif(Auth::user()->rol_id==2)
                                         <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('Mis Pedidos') }}</a>
-                                        <a class="dropdown-item" href="{{url('product/import-form')}}">{{ __('Actualizar inventario') }}</a>
+                                        <a class="dropdown-item" href="{{url('product/import-form')}}">{{ __('Actualizar catálogo') }}</a>
                                         <a class="dropdown-item" href="{{route('providers.show', Auth::user()->provider_id)}}">{{ __('Perfil de Provedor') }}</a>
                                     @else
                                     <a class="dropdown-item" href="{{ route('carts.index') }}">{{ __('Mi Carrito') }}</a>
@@ -130,7 +145,7 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start" id="menu">
                     <li>
                         <a href="{{route('/')}}" class="nav-link px-0 align-middle link-color">
-                        <i class="fas fa-home"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span></a>
+                        <i class="fas fa-home"></i> <span class="ms-1 d-none d-sm-inline">{{ __('Inicio')}}</span></a>
                     </li>
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle link-color">
@@ -169,7 +184,7 @@
                                 </form>
                             </li>
                             <li class="w-100">
-                                <form class="d-grid gap-2">
+                                <form action="{{ route('products.index') }}" class="d-grid gap-2">
                                     <input name="category" value="5" type="hidden" placeholder="" aria-label="search">
                                     <button class="btn nav-link px-2 link-color" type="submit"><i class="fas fa-cogs"></i>
                                     <span class="d-none d-sm-inline"> {{ __('Repuestos y accesorios') }}</span></button>
@@ -180,25 +195,25 @@
                     </li>
                     <li>
                         <a href="{{url('product/offers')}}" class="nav-link px-0 align-middle link-color">
-                        <i class="fas fa-certificate"></i> <span class="ms-1 d-none d-sm-inline">Ofertas</span></a>
+                        <i class="fas fa-certificate"></i> <span class="ms-1 d-none d-sm-inline">{{ __('Ofertas') }}</span></a>
                     </li>
                     <li>
                         <a href="{{ route('providers.index') }}" class="nav-link px-0 align-middle link-color">
-                        <i class="fas fa-shipping-fast"></i></i> <span class="ms-1 d-none d-sm-inline">Proveedores</span></a>
+                        <i class="fas fa-shipping-fast"></i></i> <span class="ms-1 d-none d-sm-inline">{{ __('Proveedores') }}</span></a>
                     </li>
                     @if (Auth::check())
                     <li>
                         <a href="{{ route('orders.index') }}" class="nav-link px-0 align-middle link-color">
-                        <i class="fas fa-boxes"></i></i> <span class="ms-1 d-none d-sm-inline">Mis Pedidos</span></a>
+                        <i class="fas fa-boxes"></i></i> <span class="ms-1 d-none d-sm-inline">{{ __('Mis Pedidos') }}</span></a>
                     </li>
                     @endif
                     <li>
                         <a href="{{route('listquote.index')}}" class="nav-link px-0 align-middle link-color">
-                        <i class="fas fa-hand-holding-usd"></i></i> <span class="ms-1 d-none d-sm-inline">Cotizaciones</span></a>
+                        <i class="fas fa-hand-holding-usd"></i></i> <span class="ms-1 d-none d-sm-inline">{{ __('Cotizaciones') }}</span></a>
                     </li>
                     <li>
                         <a href="{{url('/policy')}}" class="nav-link px-0 align-middle link-color">
-                        <i class="fas fa-reply"></i> <span class="ms-1 d-none d-sm-inline">Politica de devoluciones</span></a>
+                        <i class="fas fa-reply"></i> <span class="ms-1 d-none d-sm-inline">{{ __('Politica de devoluciones') }}</span></a>
                     </li>
 
                     <li class="rounded mx-auto d-block">
@@ -254,11 +269,11 @@
     <!-- Section: Social media -->
   </div>
   <!-- Grid container -->
-  <span>SG Iluminacion Slogan | Novaware</span>
+  <span>SG Iluminaci&oacute;n Slogan | Novaware</span>
   <!-- Copyright -->
   <div class="text-center p-3 footer-copyright">
     © 2021 |
-    <a class="link-color" href="#">SGIluminacion.com</a>
+    <a class="link-color" href="">sgiluminacion.com</a>
   </div>
   <!-- Copyright -->
 </footer>

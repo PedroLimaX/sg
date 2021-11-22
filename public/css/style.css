@@ -184,10 +184,10 @@ p{
 }
 
 /*Stock*/
-.stock-aviable{
+.stock-available{
   color: var(--stock-green);
 }
-.stock-not-aviable{
+.stock-not-available{
   color: var(--stock-red);
 }
 /*Forms*/

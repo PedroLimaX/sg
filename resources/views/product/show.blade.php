@@ -9,8 +9,8 @@
     @if(($product->discount)>0)
         <h4 class=""><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
     @endif
-    <h1 class="text-break">{{ $product->name }}</h1><h4 class="text-break stock-aviable">@if (($product->quantity)>0) Disponible @endif</h4>
-                <h4 class="text-break stock-not-aviable">@if (($product->quantity)<=0) Agotado @endif</h4>
+    <h1 class="text-break">{{ $product->name }}</h1><h4 class="text-break stock-available">@if ($product->available) Disponible @endif</h4>
+                <h4 class="text-break stock-not-available">@if (!$product->available) Agotado @endif</h4>
 
     @if(count($errors)>0)
         <div class="alert alert-danger" roler="alert">

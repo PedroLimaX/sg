@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $specs
  * @property $image
  * @property $price
- * @property $quantity
+ * @property $available
  * @property $max_per_order
  * @property $materials
  * @property $maker
@@ -41,7 +41,7 @@ class Product extends Model
 		'normal_price' => 'required',
 		'discount' => 'required',
 		'final_price' => 'required',
-		'quantity' => 'required',
+		'available' => 'required',
 		'max_per_order' => 'required',
 		'materials' => 'required',
 		'maker' => 'required',
@@ -57,7 +57,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['sku','name','key_words','description','specs','image','normal_price','discount','final_price','quantity','max_per_order','materials','maker','provider_id','category_id','imported'];
+    protected $fillable = ['sku','name','key_words','description','specs','image','normal_price','discount','final_price','available','max_per_order','materials','maker','provider_id','category_id','imported'];
 
 
     /**

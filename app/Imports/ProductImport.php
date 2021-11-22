@@ -29,7 +29,7 @@ class ProductImport implements ToModel, WithHeadingRow
                 'normal_price' => $row['normal_price'],
                 'discount' => $row['discount'],
                 'final_price' => ($row['normal_price']-(($row['normal_price']*$row['discount'])/100)),
-                'quantity' => $row['quantity'],
+                'available' => $row['available'],
                 'max_per_order' => $row['max_per_order'],
                 'materials' => $row['materials'],
                 'maker' => $row['maker'],
@@ -38,8 +38,5 @@ class ProductImport implements ToModel, WithHeadingRow
                 'imported' => '1'
                 
             ]);
-        /*if(!(Product::find($row['sku']))){
-                Product::where('imported',0)->delete();
-        }*/
     }
 }

@@ -20,9 +20,9 @@
         <br>
         <div class="row">
             <div class="col">
-                {{ Form::label('Stock') }}
-                {{ Form::text('stock', $product->stock, ['hidden', 'class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''), 'placeholder' => 'Stock']) }}
-                {!! $errors->first('stock', '<p class="invalid-feedback">:message</p>') !!}                    
+                {{ Form::label('available') }}
+                {{ Form::text('available', $product->available, ['hidden', 'class' => 'form-control' . ($errors->has('available') ? ' is-invalid' : ''), 'placeholder' => 'available']) }}
+                {!! $errors->first('available', '<p class="invalid-feedback">:message</p>') !!}                    
             </div>
 
             <div class="col">
