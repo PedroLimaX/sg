@@ -100,8 +100,10 @@ input:checked + .slider:before {
 body {
     margin: 0;
     background-color: var(--light3-color);
-    color: var(--text-color);
-    
+    color: var(--text-color); 
+  }
+h1{
+    color: var(--primary-color);
   }
 h3{
     color: var(--primary-color);
@@ -186,6 +188,8 @@ p{
 /*Stock*/
 .stock-available{
   color: var(--stock-green);
+  font-family: "Prototype";
+ font-weight: normal;
 }
 .stock-not-available{
   color: var(--stock-red);

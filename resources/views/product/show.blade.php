@@ -9,7 +9,8 @@
     @if(($product->discount)>0)
         <h4 class=""><span class="badge badge-pill badge-danger">-{{$product->discount}}%</span></h4>
     @endif
-    <h1 class="text-break">{{ $product->name }}</h1><h4 class="text-break stock-available">@if ($product->available) Disponible @endif</h4>
+    <h1 class="text-break">{{ $product->name }}</h1>
+    <h4 class="text-break stock-available">@if ($product->available) Disponible @endif</h4>
                 <h4 class="text-break stock-not-available">@if (!$product->available) Agotado @endif</h4>
 
     @if(count($errors)>0)
@@ -78,19 +79,21 @@
                 <p class="text-brek">{{ $product->specs}}</p>
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col">
-                        <label for="price">Precio</label>
-                        @if(($product->discount)>0)
+                <label for="price">Precio</label>
+
+                <div class="d-flex flex-row">
+                    @if(($product->discount)>0)
+                        <div class="p-2">
                             <p class="text-break" style="text-decoration: line-through">${{ $product->normal_price }} MXN</p>
+                        </div>
+                        <div class="p-2">
                             <h3 class="text-break">${{ $product->final_price }} MXN</h3>
-                        @else
+                        </div>
+                    @else
+                        <div class="p-2">
                             <h3 class="text-break">${{ $product->normal_price }} MXN</h3>
-                        @endif
-                    </div>
-                    <div class="col">
-                        
-                    </div>
+                        </div>
+                    @endif
                 </div>
                 <br>
                 <div class="row">

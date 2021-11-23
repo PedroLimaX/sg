@@ -14,23 +14,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
 
-    <!-- Fonts 
+    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     
     <link href="{{ asset('css/app.css') }}" rel ="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" origin="anonymous">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/diseno.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('/storage/sg_icon.png') }}">
     
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-lg shadow navbar-static-top navbar-color">
-            <div class="container-fluid">
-            @switch(Carbon\Carbon::now()->month)
+        @switch(Carbon\Carbon::now()->month)
                 @case(1) <img src="{{ asset('/storage/monthly-icons/01.png') }}" alt="Año Nuevo | 01" title="Año Nuevo | 01"  width="32"  class="d-inline-block align-text-top"> @break
                 @case(2) <img src="{{ asset('/storage/monthly-icons/02.png') }}" alt="San Valentin | 14" title="San Valentin | 14" width="32"  class="d-inline-block align-text-top"> @break
                 @case(3) <img src="{{ asset('/storage/monthly-icons/03.png') }}" alt="Primavera | 21" title="Primavera | 21" width="32"  class="d-inline-block align-text-top"> @break
@@ -44,7 +43,7 @@
                 @case(11) <img src="{{ asset('/storage/monthly-icons/11.png') }}" alt="Dia de Muertos | 02" title="Dia de Muertos | 02" width="32"  class="d-inline-block align-text-top"> @break
                 @case(12) <img src="{{ asset('/storage/monthly-icons/12.png') }}" alt="Navidad | 25" title="Navidad | 25" width="32"  class="d-inline-block align-text-top"> @break
             @endswitch
-
+            <div class="container-fluid">
                 <a class="navbar-brand link-color" href="{{ route('/') }}">
                     <img src="{{ asset('/storage/sg_logo.png') }}" alt="SG logo"  width="200"  class="d-inline-block align-text-top">
                 </a>
