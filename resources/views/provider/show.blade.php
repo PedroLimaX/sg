@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="col-md-6 offset-md-7">
+                    <div class="col-md-5 offset-md-7">
                         @if(Auth::check())
                             @if((Auth::user()->rol_id==1)||($provider->id==Auth::user()->provider_id))
                                 <a href="{{ route('providers.edit',$provider->id) }}" class="btn btn-tertiary btn-lg">
