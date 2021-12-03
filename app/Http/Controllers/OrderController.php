@@ -66,14 +66,16 @@ class OrderController extends Controller
             ->where('cart_status_id', 1 and 'user_id', Auth::user()->id)
             ->update(['cart_status_id' => 2, 'code'=> date('Ymd').Auth::user()->id.$token]);
 
-        $provider_id=DB::table('carts')->where('cart_status_id', 2)->where('user_id', Auth::user()->id)->pluck('provider_id');
-        $provider_data=DB::table('providers')->where('id', $provider_id)->pluck('email');
-        $client_data=DB::table('users')->where('id', Auth::user()->id)->select('email', 'name')->get();
-
+        $provider_id=DB::table('carts')->where('cart_status_id', 2)->where('user_id', Auth::user()->id)->distinct()->pluck('provider_id');
+        foreach($provider_id as $provider=>$id){
+            $provider_data=DB::table('providers')->where('id', $id)->pluck('email');
+            $email = new NotifyMailable(date('Ymd').Auth::user()->id.$token);
+            Mail::to($provider_data)->send($email);
+        }
+        /*$client_data=DB::table('users')->where('id', Auth::user()->id)->select('email', 'name')->get();
         $order_data=DB::table('orders')->where('user_id', Auth::user()->id)->get();
-        
         $email = new NotifyMailable(date('Ymd').Auth::user()->id.$token);
-        Mail::to($provider_data)->send($email);
+        Mail::to($provider_data)->send($email);*/
 
         return redirect()->route('orders.index')->with('success', "Pedido realizado correctamente");
     }

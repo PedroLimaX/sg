@@ -36,7 +36,7 @@
             </div>
         </div>
         <br>
-        <div class="col-md-2 offset-md-10">
+        <div class="col-md-2 offset-md-9">
             <button type="submit" class="btn btn-primary btn-lg">
                 <i class="fas fa-save"></i>
             </button>

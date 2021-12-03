@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     @includeif('partials.errors')
                     <div class="card-default">
-                        <h1>Crear Proveedor</h1>
+                        <h1>Crear Usuario</h1>
                         <div class="card-body">
                             <form method="POST" action="{{ route('users.store') }}"  role="form" enctype="multipart/form-data">
                                 @csrf

@@ -11,7 +11,7 @@ class NotifyMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject="SG Iluminacion Support";
+    public $subject="Seguimiento de Pedidos";
     public $order_data;
 
     /**

@@ -13,7 +13,7 @@
                 @includeif('partials.errors')
 
                 <div class="card-default">
-                        <h1>Editar ordero</h1>
+                        <h1>Editar Pedido</h1>
                     <div class="card-body">
                         <form method="POST" action="{{ route('orders.update', $order->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}

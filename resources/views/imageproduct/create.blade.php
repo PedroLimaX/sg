@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 @includeif('partials.errors')
                 <div class="card-default">
-                    <h1>Crear imageproducto</h1>
+                    <h1>Agregar Imagen</h1>
                     <div class="card-body">
                         <form method="POST" action="{{ route('imageproducts.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf

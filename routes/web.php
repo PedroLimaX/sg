@@ -27,6 +27,10 @@ Route::get('/policy', function () {
     return view('policy');
 });
 
+Route::get('/cucaracha', function () {
+    return view('cucaracha');
+});
+
 
 Auth::routes(['reset'=>false]);
 

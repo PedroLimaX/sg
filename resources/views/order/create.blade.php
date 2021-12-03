@@ -9,7 +9,7 @@
                 @includeif('partials.errors')
 
                 <div class="card-default">
-                    <h1>Crear ordero</h1>
+                    <h1>Crear Pedido</h1>
                     <div class="card-body">
                     <form method="POST" action="{{ route('orders.store') }}"  role="form" enctype="multipart/form-data">
                         @csrf

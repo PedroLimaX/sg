@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>TIENES UN NUEVO PEDIDO!</h1>
+        <h1>{{$subject}}</h1>
         <strong>Pedido No: </strong><label>{{$order_data}}</label>
         <p>Realiza el seguimiento y actualizacion de tus pedidos en el sitio</p>
         <i><small>

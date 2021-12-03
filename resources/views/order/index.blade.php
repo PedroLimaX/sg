@@ -4,8 +4,8 @@
 @if(Auth::user()->rol_id==3)  
 <div class="alert alert-info alert-dismissible d-flex align-items-center fade show shadow" roler="alert">
   <i class="fas fa-info-circle"></i>
-      <strong class="mx-2">Importante!</strong>Realiza el deposito de tu pedido a la tarjeta
-      4444 4444 4444 4444 del banco HSBC<br> Ingresa el codigo de tu pedido en la referencia de 
+      <strong class="mx-2">Importante!</strong>Realiza el dep&oacute;sito de tu pedido a la tarjeta
+      1234 5678 9012 3456 del banco HSBC<br> Ingresa el c&oacute;digo de tu pedido en la referencia de 
       pago para que el proveedor pueda darle seguimiento a tu pedido
       <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left:10px">
           <span aria-hidden="true">&times;</span>

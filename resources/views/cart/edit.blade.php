@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 @includeif('partials.errors')
                 <div class="card-default">
-                        <h1>Editar carto</h1>
+                        <h1>Editar Pedido</h1>
                     <div class="card-body">
                         <form method="POST" action="{{ route('carts.update', $cart->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}

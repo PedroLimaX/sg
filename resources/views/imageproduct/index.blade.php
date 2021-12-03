@@ -9,7 +9,7 @@
           </button>
         </div>
       @endif
-      <a href="{{ route('imageproducts.create') }}" class="btn btn-tertiary"><i class="fas fa-image"></i> Nuevo imageproducto</a>
+      <a href="{{ route('imageproducts.create') }}" class="btn btn-tertiary"><i class="fas fa-image"></i> Nueva Imagen</a>
       <br><br>
       <div class="gallery-main">
         <div class="row row-cols-1 row-cols-md-4 g-5">
