@@ -127,10 +127,12 @@
         <div class="col-md-3 offset-md-9">
             <div class="input-group mb-3">
                 @csrf
+                @if($product->available)
                 <span class="form-control" for="inputGroupFile01">Cantidad</span>
                 <input class="form-control" type="number" id="quant_product" name="quant_product"
                     value="1" min="1" max="{{$product->max_per_order}}">
-                <button type="submit" class="form-control btn btn-primary"><i class="fa fa-cart-plus"></i></button>
+                        <button type="submit" class="form-control btn btn-primary"><i class="fa fa-cart-plus"></i></button>
+                    @endif
             </div>
         </div>
     </form>

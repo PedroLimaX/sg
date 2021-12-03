@@ -12,6 +12,9 @@
         h1{
             color: #971914;
         }
+        h2{
+            color: #971914;
+        }
         .container{
             margin:20px;
         }
@@ -23,6 +26,7 @@
 <body>
     <div class="container">
         <h1>{{$subject}}</h1>
+        <h2>Tienes un nuevo pedido!</h2>
         <strong>Pedido No: </strong><label>{{$order_data}}</label>
         <p>Realiza el seguimiento y actualizacion de tus pedidos en el sitio</p>
         <i><small>
